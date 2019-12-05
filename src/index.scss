@@ -1,0 +1,114 @@
+$boardBoarder: 3px;
+$squareSize: 10vmax;
+
+body {
+  box-sizing: border-box;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  color: #e0d7ba;
+  background-color: #353535;
+  text-align: center;
+  margin: auto;
+}
+.board {
+  position: relative;
+  border-right: $boardBoarder solid #e0d7ba;
+  border-bottom: $boardBoarder solid #e0d7ba;
+}
+#winLine {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 3px;
+  content: "";
+  background: #c00;
+  // display: block;
+  transform: rotate(45deg);
+}
+ol,
+ul {
+  padding-left: 0px;
+  list-style-type: none;
+}
+li {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  background: #362f1b;
+  opacity: 0.8;
+  color: #d4b357;
+  border: {
+    top: $boardBoarder solid #e0d7ba;
+    left: $boardBoarder solid #e0d7ba;
+    right: 0;
+    bottom: 0;
+  }
+  float: left;
+  font-size: $squareSize/2;
+  font-weight: bold;
+  /* line-height: 5vmax; */
+  padding: 0;
+  text-align: center;
+  width: $squareSize;
+  height: $squareSize;
+}
+
+.square:focus {
+  outline: none;
+  outline-style: none;
+}
+.square:hover {
+  background: #463f2b;
+  transition: 0.3s;
+}
+
+.game-board {
+  flex: 0 0 auto;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+img {
+  flex: 0 0 auto;
+  height: 8vmax;
+  margin-bottom: 2vmax;
+}
+#stat {
+  margin-bottom: 20px;
+  font-size: 3vmax;
+}
+.game-info {
+  text-align: center;
+}
+.but {
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5em;
+  color: #e0d7ba;
+  transition: 0.3s;
+  outline: none;
+  font-size: calc(1.9vmax + 2px);
+}
+.but:hover {
+  background: #d4b357;
+  color: #544418;
+}
