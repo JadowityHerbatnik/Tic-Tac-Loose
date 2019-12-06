@@ -30,7 +30,7 @@ function getLineStyle() {
     };
     const start = winnerSquares[0];
     const end = winnerSquares[1];
-    const thickness = "0.4vmax";
+    const thickness = "1vmax";
     const length = "90%";
     const margin = ((100 - parseInt(length)) / 2).toString() + "%";
     const lineDirection = getLineDirection(start, end);
@@ -38,7 +38,7 @@ function getLineStyle() {
     switch (lineDirection) {
       case "horizontal":
         const topOffset = 1 + (start / 3) * 2;
-        lineStyle.top = `calc(100%*${topOffset}/6)`;
+        lineStyle.top = `calc(100%*${topOffset}/6 - ${thickness}/2)`;
         lineStyle.left = margin;
         lineStyle.width = length;
         lineStyle.height = thickness;
@@ -52,15 +52,14 @@ function getLineStyle() {
         lineStyle.transform = "rotate(90deg)";
         break;
       case "diagonal":
-        lineStyle.top = "15%";
-        lineStyle.left = "50%";
-        lineStyle.width = "100%";
+        lineStyle.top = `calc(8% - ${thickness}/2)`;
+        lineStyle.width = "120%";
         lineStyle.height = thickness;
         if (start === 0) {
-          lineStyle.left = "15%";
+          lineStyle.left = "8%";
           lineStyle.transform = "rotate(45deg)";
         } else {
-          lineStyle.left = "85%";
+          lineStyle.left = "92%";
           lineStyle.transform = "rotate(135deg)";
         }
         break;
