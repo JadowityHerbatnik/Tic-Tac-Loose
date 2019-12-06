@@ -25,21 +25,12 @@ function calculateWinner(squares) {
 function getLineStyle() {
   if (winnerSquares.length > 0) {
     const lineStyle = {
-      boxSizing: "border-box",
-      position: "absolute",
-      opacity: "0.8",
-      top: "calc(100%*5/6)",
-      left: "0",
-      width: "100%",
-      height: "1vmax",
-      // content: "",
-      background: "#c00",
-      transform: "rotate(0deg)"
+      transformOrigin: "left",
+      background: "#c00"
     };
-
     const start = winnerSquares[0];
     const end = winnerSquares[1];
-    const thickness = "0.3vmax";
+    const thickness = "0.4vmax";
     const length = "90%";
     const margin = ((100 - parseInt(length)) / 2).toString() + "%";
     const lineDirection = getLineDirection(start, end);
@@ -49,37 +40,44 @@ function getLineStyle() {
         const topOffset = 1 + (start / 3) * 2;
         lineStyle.top = `calc(100%*${topOffset}/6)`;
         lineStyle.left = margin;
+        lineStyle.width = length;
+        lineStyle.height = thickness;
         break;
       case "vertical":
         const leftOffset = 1 + start * 2;
         lineStyle.left = `calc(100%*${leftOffset}/6)`;
         lineStyle.top = margin;
+        lineStyle.width = length;
+        lineStyle.height = thickness;
+        lineStyle.transform = "rotate(90deg)";
         break;
       case "diagonal":
-        lineStyle.top = "50%";
-        start === 0
-          ? (lineStyle.transform = "rotate(45deg)")
-          : (lineStyle.transform = "rotate(135deg)");
+        lineStyle.top = "15%";
+        lineStyle.left = "50%";
+        lineStyle.width = "100%";
+        lineStyle.height = thickness;
+        if (start === 0) {
+          lineStyle.left = "15%";
+          lineStyle.transform = "rotate(45deg)";
+        } else {
+          lineStyle.left = "85%";
+          lineStyle.transform = "rotate(135deg)";
+        }
+        break;
+      default:
         break;
     }
 
     function getLineDirection(start, end) {
       if (start % 3 === end % 3) {
-        lineStyle.height = length;
-        lineStyle.width = thickness;
         return "vertical";
       } else if (Math.floor(start / 3) === Math.floor(end / 3)) {
-        lineStyle.width = length;
-        lineStyle.height = thickness;
         return "horizontal";
       } else {
-        lineStyle.width = "100%";
-        lineStyle.height = thickness;
         return "diagonal";
       }
     }
     console.log(lineDirection);
-
     return lineStyle;
   }
 }

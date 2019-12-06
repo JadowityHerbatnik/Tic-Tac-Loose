@@ -1,3 +1,10 @@
+.line {
+  position: absolute;
+  transition-property: width;
+  transition-duration: 1s;
+  width: 0;
+}
+
 body {
   box-sizing: border-box;
   font: 14px "Century Gothic", Futura, sans-serif;
@@ -50,6 +57,7 @@ li {
   background: #362f1b;
   opacity: 0.8;
   color: #d4b357;
+  border-radius: 0px;
   border-top: 3px solid #e0d7ba;
   border-left: 3px solid #e0d7ba;
   border-right: 0;

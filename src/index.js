@@ -26,7 +26,7 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     const winner = getWinner(current.squares);
-    this.setState({ lineStyle: lineStyle() });
+    // this.setState({ lineStyle: lineStyle() });
     if (winner || squares[i]) {
       return;
     }

@@ -20,9 +20,6 @@ class Board extends React.Component {
       />
     );
   }
-  renderlineStyle() {
-    return <LineDiv className="chuj" lineStyle={this.props.lineStyle} />;
-  }
 
   render() {
     return (
@@ -42,7 +39,9 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <div>{this.renderlineStyle()}</div>
+        <div>
+          <LineDiv className="line" lineStyle={this.props.lineStyle} />
+        </div>
       </div>
     );
   }
