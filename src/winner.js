@@ -46,7 +46,7 @@ function getLineStyle() {
       case "vertical":
         const leftOffset = 1 + start * 2;
         lineStyle.left = `calc(100%*${leftOffset}/6)`;
-        lineStyle.top = margin;
+        lineStyle.top = `calc(${margin} - ${thickness}/2)`;
         lineStyle.width = length;
         lineStyle.height = thickness;
         lineStyle.transform = "rotate(90deg)";
