@@ -7,6 +7,9 @@ function Square(props) {
     </button>
   );
 }
+function LineDiv(props) {
+  return <div className={props.className} style={props.lineStyle}></div>;
+}
 
 class Board extends React.Component {
   renderSquare(i) {
@@ -16,6 +19,9 @@ class Board extends React.Component {
         onClick={() => this.props.onClick(i)}
       />
     );
+  }
+  renderlineStyle() {
+    return <LineDiv className="chuj" lineStyle={this.props.lineStyle} />;
   }
 
   render() {
@@ -36,7 +42,7 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <div id="winLine"></div>
+        <div>{this.renderlineStyle()}</div>
       </div>
     );
   }

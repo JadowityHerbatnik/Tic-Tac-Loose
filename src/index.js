@@ -5,6 +5,7 @@ import Board from "./Board.js";
 import toe from "./toe.png";
 import titac from "./tictac.ico";
 import { getWinner } from "./winner.js";
+import { lineStyle } from "./winner.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -24,7 +25,9 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (getWinner(squares) || squares[i]) {
+    const winner = getWinner(current.squares);
+    this.setState({ lineStyle: lineStyle() });
+    if (winner || squares[i]) {
       return;
     }
     squares[i] = this.state.xIsNext ? "X" : "O";
@@ -64,7 +67,12 @@ class Game extends React.Component {
     });
 
     let status;
+    let winningline;
+
+    winningline = lineStyle();
     if (winner) {
+      winningline = lineStyle();
+
       status = "Winner: " + winner;
     } else if (this.state.stepNumber === 9) {
       status = "Draw!";
@@ -80,7 +88,11 @@ class Game extends React.Component {
             <img src={toe} className="logo" alt="" />
           </div>
           <div id="stat">{status}</div>
-          <Board squares={current.squares} onClick={i => this.handleClick(i)} />
+          <Board
+            squares={current.squares}
+            onClick={i => this.handleClick(i)}
+            lineStyle={winningline}
+          />
         </div>
         <div className="game-info">
           <ol>{moves}</ol>
