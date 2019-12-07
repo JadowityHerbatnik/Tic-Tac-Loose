@@ -42,6 +42,7 @@ function getLineStyle() {
         lineStyle.left = margin;
         lineStyle.width = length;
         lineStyle.height = thickness;
+        lineStyle.transform = "rotate(0deg)"; // Yeah, 0deg, that fixes a tearing issue
         break;
       case "vertical":
         const leftOffset = 1 + start * 2;
