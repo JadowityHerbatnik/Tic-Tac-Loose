@@ -1,5 +1,6 @@
 .line {
   position: absolute;
+  border-radius: 10px;
   transition-property: width;
   transition-duration: 1s;
   width: 0;
