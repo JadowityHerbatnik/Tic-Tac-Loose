@@ -6,6 +6,7 @@ import toe from "./toe.png";
 import titac from "./tictac.ico";
 import { getWinner } from "./winner.js";
 import { lineStyle } from "./winner.js";
+import Minimax from "tic-tac-toe-minimax";
 
 class Game extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Game extends React.Component {
     if (winner || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = "X";
     this.setState({
       history: history.concat([
         {
@@ -40,6 +41,22 @@ class Game extends React.Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
     });
+    const { ComputerMove } = Minimax;
+
+    const huPlayer = "X";
+    const aiPlayer = "O";
+    const symbols = {
+      huPlayer: huPlayer,
+      aiPlayer: aiPlayer
+    };
+    const difficulty = "Hard";
+    const board = Array(9).fill(null);
+    squares.forEach((value, index) => {
+      board[index] = value ? value : index;
+    });
+
+    const nextMove = ComputerMove(board, symbols, difficulty);
+    squares[nextMove] = "O";
   }
 
   jumpTo(step) {
