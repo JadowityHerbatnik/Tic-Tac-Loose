@@ -1,11 +1,15 @@
-$boardBoarder: 3px;
+$boardBorder: 3px;
 $squareSize: 10vmax;
+
+$boardBackground: #362f1b;
+$ticColor: #d4b357;
 
 .line {
   position: absolute;
   border-radius: 10px;
   transition-property: width;
   transition-duration: 1s;
+  transition-delay: 1s;
   width: 0;
 }
 body {
@@ -18,8 +22,8 @@ body {
 }
 .board {
   position: relative;
-  border-right: $boardBoarder solid #e0d7ba;
-  border-bottom: $boardBoarder solid #e0d7ba;
+  border-right: $boardBorder solid #e0d7ba;
+  border-bottom: $boardBorder solid #e0d7ba;
 }
 #winLine {
   position: absolute;
@@ -54,18 +58,18 @@ li {
 }
 
 .square {
-  background: #362f1b;
+  background: $boardBackground;
   opacity: 0.8;
-  color: #d4b357;
+  color: $boardBackground;
   border-radius: 0px;
   border: {
-    top: $boardBoarder solid #e0d7ba;
-    left: $boardBoarder solid #e0d7ba;
+    top: $boardBorder solid #e0d7ba;
+    left: $boardBorder solid #e0d7ba;
     right: 0;
     bottom: 0;
   }
   float: left;
-  font-size: $squareSize/2;
+  font-size: $squareSize/32;
   font-weight: bold;
   /* line-height: 5vmax; */
   padding: 0;
@@ -119,4 +123,17 @@ img {
 .but:hover {
   background: #d4b357;
   color: #544418;
+}
+.X,
+.O {
+  margin: auto;
+  display: block;
+  width: min-content;
+  color: $ticColor;
+  transform: scale(16);
+  transition: 0.3s;
+  transition-property: transform, color;
+}
+.O {
+  transition-delay: 0.3s;
 }

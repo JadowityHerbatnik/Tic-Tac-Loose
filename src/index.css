@@ -3,6 +3,7 @@
   border-radius: 10px;
   transition-property: width;
   transition-duration: 1s;
+  transition-delay: 1s;
   width: 0;
 }
 
@@ -57,14 +58,14 @@ li {
 .square {
   background: #362f1b;
   opacity: 0.8;
-  color: #d4b357;
+  color: #362f1b;
   border-radius: 0px;
   border-top: 3px solid #e0d7ba;
   border-left: 3px solid #e0d7ba;
   border-right: 0;
   border-bottom: 0;
   float: left;
-  font-size: 5vmax;
+  font-size: 0.3125vmax;
   font-weight: bold;
   /* line-height: 5vmax; */
   padding: 0;
@@ -125,6 +126,21 @@ img {
 .but:hover {
   background: #d4b357;
   color: #544418;
+}
+
+.X,
+.O {
+  margin: auto;
+  display: block;
+  width: min-content;
+  color: #d4b357;
+  transform: scale(16);
+  transition: 0.3s;
+  transition-property: transform, color;
+}
+
+.O {
+  transition-delay: 0.3s;
 }
 
 /*# sourceMappingURL=index.css.map */
