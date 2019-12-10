@@ -1,4 +1,5 @@
 .line {
+  opacity: 0.9;
   position: absolute;
   border-radius: 10px;
   transition-property: width;
@@ -58,20 +59,23 @@ li {
 .square {
   background: #362f1b;
   opacity: 0.8;
-  color: #362f1b;
   border-radius: 0px;
   border-top: 3px solid #e0d7ba;
   border-left: 3px solid #e0d7ba;
   border-right: 0;
   border-bottom: 0;
   float: left;
-  font-size: 0.3125vmax;
-  font-weight: bold;
-  /* line-height: 5vmax; */
-  padding: 0;
-  text-align: center;
   width: 10vmax;
   height: 10vmax;
+}
+
+.tic {
+  opacity: 0;
+  color: #d4b357;
+  font-size: 0.625vmax;
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
 }
 
 .square:focus {
@@ -133,14 +137,10 @@ img {
   margin: auto;
   display: block;
   width: min-content;
-  color: #d4b357;
-  transform: scale(16);
+  transform: scale(8);
+  opacity: 1;
   transition: 0.3s;
-  transition-property: transform, color;
-}
-
-.O {
-  transition-delay: 0.3s;
+  transition-property: transform, opacity;
 }
 
 /*# sourceMappingURL=index.css.map */

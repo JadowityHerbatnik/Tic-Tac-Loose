@@ -5,6 +5,7 @@ $boardBackground: #362f1b;
 $ticColor: #d4b357;
 
 .line {
+  opacity: 0.9;
   position: absolute;
   border-radius: 10px;
   transition-property: width;
@@ -60,7 +61,6 @@ li {
 .square {
   background: $boardBackground;
   opacity: 0.8;
-  color: $boardBackground;
   border-radius: 0px;
   border: {
     top: $boardBorder solid #e0d7ba;
@@ -69,13 +69,17 @@ li {
     bottom: 0;
   }
   float: left;
-  font-size: $squareSize/32;
-  font-weight: bold;
-  /* line-height: 5vmax; */
-  padding: 0;
-  text-align: center;
   width: $squareSize;
   height: $squareSize;
+}
+.tic {
+  opacity: 0;
+  color: $ticColor;
+  font-size: $squareSize/16;
+  font-weight: bold;
+  // line-height: 1;
+  padding: 0;
+  text-align: center;
 }
 
 .square:focus {
@@ -129,11 +133,8 @@ img {
   margin: auto;
   display: block;
   width: min-content;
-  color: $ticColor;
-  transform: scale(16);
+  transform: scale(8);
+  opacity: 1;
   transition: 0.3s;
-  transition-property: transform, color;
-}
-.O {
-  transition-delay: 0.3s;
+  transition-property: transform, opacity;
 }
