@@ -6,7 +6,8 @@ import toe from "./toe.png";
 import titac from "./tictac.ico";
 import { getWinner } from "./winner.js";
 import { lineStyle } from "./winner.js";
-import Minimax from "tic-tac-toe-minimax";
+import { nextMove } from "./switcher.js";
+import { switcher } from "./switcher.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Game extends React.Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      player: "X"
     };
   }
 
@@ -27,11 +29,11 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     const winner = getWinner(current.squares);
-    // this.setState({ lineStyle: lineStyle() });
+
     if (winner || squares[i]) {
       return;
     }
-    squares[i] = "X";
+    squares[i] = this.state.player;
     this.setState({
       history: history.concat([
         {
@@ -39,24 +41,21 @@ class Game extends React.Component {
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
-    });
-    const { ComputerMove } = Minimax;
-
-    const huPlayer = "X";
-    const aiPlayer = "O";
-    const symbols = {
-      huPlayer: huPlayer,
-      aiPlayer: aiPlayer
-    };
-    const difficulty = "Hard";
-    const board = Array(9).fill(null);
-    squares.forEach((value, index) => {
-      board[index] = value ? value : index;
+      xIsNext: !this.state.xIsNext,
+      player: "X"
     });
 
-    const nextMove = ComputerMove(board, symbols, difficulty);
-    squares[nextMove] = "O";
+    if (history.length === 3) {
+      if (switcher(squares) !== 100) {
+        this.setState({ player: "O" });
+        squares[i] = this.state.player;
+      }
+    } else {
+      squares[i] = this.state.player;
+    }
+    if (!getWinner(current.squares)) {
+      squares[nextMove(squares)] = "O";
+    }
   }
 
   jumpTo(step) {
