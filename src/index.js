@@ -41,20 +41,26 @@ class Game extends React.Component {
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-      player: "X"
+      xIsNext: !this.state.xIsNext
     });
 
-    if (history.length === 3) {
+    if (this.state.stepNumber === 3) {
       if (switcher(squares) !== 100) {
         this.setState({ player: "O" });
-        squares[i] = this.state.player;
+        // squares[i] = this.state.player;
+        squares[i] = "O";
       }
     } else {
       squares[i] = this.state.player;
     }
-    if (!getWinner(current.squares)) {
-      squares[nextMove(squares)] = "O";
+
+    if (!getWinner(squares)) {
+      setTimeout(() => {
+        squares[nextMove(squares)] = "O";
+        this.setState({ squares: squares });
+      }, 500);
+    } else {
+      this.setState({ player: "X" });
     }
   }
 
@@ -86,14 +92,17 @@ class Game extends React.Component {
     let winningline;
 
     winningline = lineStyle();
+    // if (winner) {
+    //   winningline = lineStyle();
+
+    //   status = "Winner: " + winner;
+    // } else if (this.state.stepNumber === 9) {
+    //   status = "Draw!";
+    // } else {
+    //   status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+    // }
     if (winner) {
       winningline = lineStyle();
-
-      status = "Winner: " + winner;
-    } else if (this.state.stepNumber === 9) {
-      status = "Draw!";
-    } else {
-      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
 
     return (
