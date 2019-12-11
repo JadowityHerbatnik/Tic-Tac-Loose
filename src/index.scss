@@ -7,11 +7,13 @@ $ticColor: #d4b357;
 .line {
   opacity: 0.9;
   position: absolute;
-  border-radius: 10px;
-  transition-property: width;
-  transition-duration: 1s;
-  transition-delay: 1s;
   width: 0;
+  border-radius: 10px;
+  transition-property: width; //Yeah, transform and scaleX is faster, but I'll have to figure out how to animate rotation and scale separately without knowing the rotation angle beforehand + it's going to be defined by React on the element in html which obv overrides css
+  transition-duration: 1s;
+  transform-origin: left;
+  background-color: #c00;
+  transition-delay: 1s;
 }
 body {
   box-sizing: border-box;

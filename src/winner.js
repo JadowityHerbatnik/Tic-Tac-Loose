@@ -24,10 +24,7 @@ function calculateWinner(squares) {
 
 function getLineStyle() {
   if (winnerSquares.length > 0) {
-    const lineStyle = {
-      transformOrigin: "left",
-      background: "#c00"
-    };
+    const lineStyle = {};
     const start = winnerSquares[0];
     const end = winnerSquares[1];
     const thickness = "1vmax";
