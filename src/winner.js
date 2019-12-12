@@ -1,5 +1,3 @@
-let winnerSquares = [];
-
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -11,19 +9,18 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6]
   ];
-  winnerSquares = [];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      winnerSquares = [a, c];
-      return squares[a];
+      let winnerSquares = [a, c];
+      return winnerSquares;
     }
   }
-  return null;
 }
 
-function getLineStyle() {
-  if (winnerSquares.length > 0) {
+function getLineStyle(squares) {
+  let winnerSquares = calculateWinner(squares);
+  if (winnerSquares != null) {
     const lineStyle = {};
     const start = winnerSquares[0];
     const end = winnerSquares[1];
@@ -74,7 +71,6 @@ function getLineStyle() {
         return "diagonal";
       }
     }
-    console.log(lineDirection);
     return lineStyle;
   }
 }
