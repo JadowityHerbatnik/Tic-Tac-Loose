@@ -1,37 +1,47 @@
+.gridLines {
+  box-sizing: border-box;
+  opacity: 0.6;
+  position: absolute;
+  left: 9.65vmax;
+  top: 0;
+  height: 30vmax;
+  width: 10.7vmax;
+  border-width: 0px 0.7vmax 0px 0.7vmax;
+  border-style: solid;
+  border-color: #e0d7ba;
+  pointer-events: none;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
 .line {
   opacity: 0.9;
   position: absolute;
+  width: 0;
   border-radius: 10px;
   transition-property: width;
   transition-duration: 1s;
+  transform-origin: left;
+  background-color: #c00;
   transition-delay: 1s;
-  width: 0;
 }
 
 body {
+  background-color: #452e00;
+  background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   box-sizing: border-box;
   font: 14px "Century Gothic", Futura, sans-serif;
   color: #e0d7ba;
-  background-color: #353535;
   text-align: center;
   margin: auto;
 }
 
 .board {
   position: relative;
-  border-right: 3px solid #e0d7ba;
-  border-bottom: 3px solid #e0d7ba;
-}
-
-#winLine {
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  width: 90%;
-  height: 3px;
-  content: "";
-  background: #c00;
-  transform: rotate(45deg);
+  border: none;
 }
 
 ol,
@@ -57,13 +67,11 @@ li {
 }
 
 .square {
-  background: #362f1b;
-  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  opacity: 1;
   border-radius: 0px;
-  border-top: 3px solid #e0d7ba;
-  border-left: 3px solid #e0d7ba;
-  border-right: 0;
-  border-bottom: 0;
+  border: none;
   float: left;
   width: 10vmax;
   height: 10vmax;
@@ -81,11 +89,6 @@ li {
 .square:focus {
   outline: none;
   outline-style: none;
-}
-
-.square:hover {
-  background: #463f2b;
-  transition: 0.3s;
 }
 
 .game-board {
@@ -138,9 +141,8 @@ img {
   display: block;
   width: min-content;
   transform: scale(8);
-  opacity: 1;
+  opacity: 0.8;
   transition: 0.3s;
-  transition-property: transform, opacity;
 }
 
 /*# sourceMappingURL=index.css.map */
