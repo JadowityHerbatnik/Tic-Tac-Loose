@@ -2,12 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Board from "./Board.js";
+import { getWinner, lineStyle } from "./winner.js";
+import { nextMove, switcher } from "./switcher.js";
 import toe from "./toe.png";
 import titac from "./tictac.ico";
-import { getWinner } from "./winner.js";
-import { lineStyle } from "./winner.js";
-import { nextMove } from "./switcher.js";
-import { switcher } from "./switcher.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -20,7 +18,8 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
-      player: "X"
+      player: "X",
+      canPlay: true
     };
   }
 
@@ -29,8 +28,9 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     const winner = getWinner(current.squares);
+    const switchNumber = 3;
 
-    if (winner || squares[i]) {
+    if (winner || squares[i] || this.state.canPlay === false) {
       return;
     }
     squares[i] = this.state.player;
@@ -41,13 +41,13 @@ class Game extends React.Component {
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext
+      xIsNext: !this.state.xIsNext,
+      canPlay: false
     });
 
-    if (this.state.stepNumber === 3) {
+    if (this.state.stepNumber === switchNumber) {
       if (switcher(squares) !== 100) {
         this.setState({ player: "O" });
-        // squares[i] = this.state.player;
         squares[i] = "O";
       }
     } else {
@@ -57,13 +57,18 @@ class Game extends React.Component {
     if (!getWinner(squares)) {
       setTimeout(() => {
         squares[nextMove(squares)] = "O";
-        this.setState({ squares: squares });
+        if (getWinner(squares)) {
+          this.reset();
+        }
+        this.setState({ squares: squares, canPlay: true });
       }, 500);
     } else {
-      this.setState({ player: "X" });
+      this.reset();
     }
   }
-
+  reset() {
+    this.setState({ player: "X", canPlay: true });
+  }
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -74,7 +79,6 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = getWinner(current.squares);
 
     const moves = history.map((step, move) => {
       const desc = move ? "Go to move #" + move : "Go to game start";
@@ -91,19 +95,7 @@ class Game extends React.Component {
     let status;
     let winningline;
 
-    winningline = lineStyle();
-    // if (winner) {
-    //   winningline = lineStyle();
-
-    //   status = "Winner: " + winner;
-    // } else if (this.state.stepNumber === 9) {
-    //   status = "Draw!";
-    // } else {
-    //   status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-    // }
-    if (winner) {
-      winningline = lineStyle();
-    }
+    winningline = lineStyle(current.squares);
 
     return (
       <div className="game">
