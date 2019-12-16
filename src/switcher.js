@@ -18,7 +18,6 @@ function getMove(squares) {
 }
 function ifSwitch(squares) {
   const board = Array(9).fill(" ");
-  console.log(squares);
   squares.forEach((value, index) => {
     if (value === null) {
       board[index] = " ";
@@ -28,7 +27,6 @@ function ifSwitch(squares) {
   });
   var board2string = board.join("");
   let result = Engine.findBestMove(board2string, 4);
-  console.log(result);
   return result.bestScore;
 }
 export const nextMove = getMove;

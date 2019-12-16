@@ -39,9 +39,9 @@ class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-        <div>
-          <LineDiv className="line" lineStyle={this.props.lineStyle} />
-        </div>
+        <div className="gridLines"></div>
+        <div className="gridLines rotate"></div>
+        <LineDiv className="line" lineStyle={this.props.lineStyle} />
       </div>
     );
   }

@@ -69,28 +69,23 @@ class Game extends React.Component {
   reset() {
     this.setState({ player: "X", canPlay: true });
   }
-  jumpTo(step) {
+  stepInHistory(direction) {
+    const history = this.state.history;
+    const currentStep = this.state.stepNumber;
+    if (
+      (direction === 1 && currentStep === history.length - 1) ||
+      (direction === -1 && currentStep === 0)
+    ) {
+      return 1;
+    }
     this.setState({
-      stepNumber: step,
-      xIsNext: step % 2 === 0
+      stepNumber: currentStep + direction
     });
   }
 
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-
-    const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
-
-      return (
-        <li key={move}>
-          <button className="but" onClick={() => this.jumpTo(move)}>
-            {desc}
-          </button>
-        </li>
-      );
-    });
 
     let status;
     let winningline;
@@ -112,7 +107,12 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <ol>{moves}</ol>
+          <button className="but" onClick={() => this.stepInHistory(-1)}>
+            Backward
+          </button>
+          <button className="but" onClick={() => this.stepInHistory(1)}>
+            Forward
+          </button>
         </div>
       </div>
     );

@@ -58,7 +58,6 @@ li {
   flex-direction: column;
   justify-content: stretch;
 }
-
 .board-row:after {
   clear: both;
   content: "";
@@ -82,15 +81,10 @@ li {
 .tic {
   opacity: 0;
   color: $ticColor;
-  font-size: $squareSize/16;
+  font-size: $squareSize * 1.3/16;
   font-weight: bold;
   padding: 0;
   text-align: center;
-}
-
-.square:focus {
-  outline: none;
-  outline-style: none;
 }
 
 .game-board {
@@ -123,8 +117,10 @@ img {
   padding: 0.5em;
   color: #e0d7ba;
   transition: 0.3s;
-  outline: none;
   font-size: calc(1.9vmax + 2px);
+}
+button:focus {
+  outline: none;
 }
 .but:hover {
   background: #d4b357;

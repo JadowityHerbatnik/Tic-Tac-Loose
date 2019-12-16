@@ -80,15 +80,10 @@ li {
 .tic {
   opacity: 0;
   color: #d4b357;
-  font-size: 0.625vmax;
+  font-size: 0.8125vmax;
   font-weight: bold;
   padding: 0;
   text-align: center;
-}
-
-.square:focus {
-  outline: none;
-  outline-style: none;
 }
 
 .game-board {
@@ -126,8 +121,11 @@ img {
   padding: 0.5em;
   color: #e0d7ba;
   transition: 0.3s;
-  outline: none;
   font-size: calc(1.9vmax + 2px);
+}
+
+button:focus {
+  outline: none;
 }
 
 .but:hover {
