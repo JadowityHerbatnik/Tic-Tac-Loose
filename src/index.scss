@@ -7,7 +7,7 @@ $ticColor: #d4b357;
 $gridLineBorder: 0.7vh;
 
 i {
-  font-size: 6vmin;
+  font-size: 1.5em;
 }
 .container {
   display: flex;
@@ -15,9 +15,11 @@ i {
   height: 100vh;
 }
 #title {
+  margin: 0 0 10px 0;
   font-size: 2.5em;
 }
 #logo {
+  margin: 20px 0 20px 0;
 }
 .gridLines {
   box-sizing: border-box;
@@ -48,8 +50,7 @@ i {
 }
 body {
   background-color: #452e00;
-  background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  background-image: url("./img/black-linen.png");
   box-sizing: border-box;
   font: 14px "Century Gothic", Futura, sans-serif;
   // font: 14px "Courier New", Courier, monospace;
@@ -119,10 +120,12 @@ img {
   height: 8vh;
 }
 .gameButtons {
-  margin-left: 2vw;
+  // margin: 0 2vw 0 2vw;
+  margin: 0;
 }
 .but {
   cursor: pointer;
+  opacity: 0.6;
   background: none;
   border: none;
   border-radius: 10px;

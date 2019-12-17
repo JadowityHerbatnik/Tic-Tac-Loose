@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "./fontello/css/fontello.css";
+import toe from "./img/toe.png";
+import titac from "./img/tictac.ico";
 import Board from "./Board.js";
+import Buttons from "./buttons.js";
 import { getWinner, lineStyle } from "./winner.js";
 import { nextMove, switcher } from "./switcher.js";
-import toe from "./toe.png";
-import titac from "./tictac.ico";
 
 class Game extends React.Component {
   constructor(props) {
@@ -92,11 +93,11 @@ class Game extends React.Component {
 
     return (
       <div className="container">
-        <p id="title">TicTacToe But You Always Loose</p>
         <div id="logo">
           <img src={titac} className="tictac" alt="" />
           <img src={toe} className="logo" alt="" />
         </div>
+        <p id="title">TicTacToe But You Always Loose</p>
         <div className="game">
           <div className="game-board">
             <Board
@@ -105,24 +106,7 @@ class Game extends React.Component {
               lineStyle={winningline}
             />
           </div>
-          <div className="gameButtons">
-            <button
-              className="but"
-              onClick={() => {
-                this.setState({ stepNumber: 0 });
-              }}
-            >
-              <i className="icon-ccw"></i>
-            </button>
-            <div>
-              <button className="but" onClick={() => this.stepInHistory(-1)}>
-                <i className="icon-left-big"></i>
-              </button>
-              <button className="but" onClick={() => this.stepInHistory(1)}>
-                <i className="icon-right-big"></i>
-              </button>
-            </div>
-          </div>
+          <Buttons />
         </div>
       </div>
     );
