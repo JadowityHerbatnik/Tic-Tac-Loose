@@ -1,12 +1,26 @@
+i {
+  font-size: 6vmin;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#title {
+  font-size: 2.5em;
+}
+
 .gridLines {
   box-sizing: border-box;
   opacity: 0.6;
   position: absolute;
-  left: 9.65vmax;
+  left: 17.65vh;
   top: 0;
-  height: 30vmax;
-  width: 10.7vmax;
-  border-width: 0px 0.7vmax 0px 0.7vmax;
+  height: 54vh;
+  width: 18.7vh;
+  border-width: 0px 0.7vh 0px 0.7vh;
   border-style: solid;
   border-color: #e0d7ba;
   pointer-events: none;
@@ -67,20 +81,21 @@ li {
 }
 
 .square {
+  cursor: pointer;
   background-color: rgba(255, 255, 255, 0);
   padding: 0;
   opacity: 1;
   border-radius: 0px;
   border: none;
   float: left;
-  width: 10vmax;
-  height: 10vmax;
+  width: 18vh;
+  height: 18vh;
 }
 
 .tic {
   opacity: 0;
   color: #d4b357;
-  font-size: 0.8125vmax;
+  font-size: 1.4625vh;
   font-weight: bold;
   padding: 0;
   text-align: center;
@@ -88,40 +103,36 @@ li {
 
 .game-board {
   flex: 0 0 auto;
+  max-height: 100%;
 }
 
 .game {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 img {
   flex: 0 0 auto;
-  height: 8vmax;
-  margin-bottom: 2vmax;
+  height: 8vh;
 }
 
-#stat {
-  margin-bottom: 20px;
-  font-size: 3vmax;
-}
-
-.game-info {
-  text-align: center;
+.gameButtons {
+  margin-left: 2vw;
 }
 
 .but {
+  cursor: pointer;
   background: none;
   border: none;
   border-radius: 10px;
   padding: 0.5em;
   color: #e0d7ba;
   transition: 0.3s;
-  font-size: calc(1.9vmax + 2px);
+  font-size: 1.5em;
 }
 
 button:focus {

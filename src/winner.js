@@ -24,7 +24,7 @@ function getLineStyle(squares) {
     const lineStyle = {};
     const start = winnerSquares[0];
     const end = winnerSquares[1];
-    const thickness = "1vmax";
+    const thickness = "2vh";
     const length = "90%";
     const margin = ((100 - parseInt(length)) / 2).toString() + "%";
     const lineDirection = getLineDirection(start, end);

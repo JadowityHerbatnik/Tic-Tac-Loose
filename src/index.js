@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./fontello/css/fontello.css";
 import Board from "./Board.js";
 import { getWinner, lineStyle } from "./winner.js";
 import { nextMove, switcher } from "./switcher.js";
@@ -17,7 +18,6 @@ class Game extends React.Component {
         }
       ],
       stepNumber: 0,
-      xIsNext: true,
       player: "X",
       canPlay: true
     };
@@ -41,7 +41,6 @@ class Game extends React.Component {
         }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
       canPlay: false
     });
 
@@ -87,32 +86,43 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
 
-    let status;
     let winningline;
 
     winningline = lineStyle(current.squares);
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <div>
-            <img src={titac} className="tictac" alt="" />
-            <img src={toe} className="logo" alt="" />
-          </div>
-          <div id="stat">{status}</div>
-          <Board
-            squares={current.squares}
-            onClick={i => this.handleClick(i)}
-            lineStyle={winningline}
-          />
+      <div className="container">
+        <p id="title">TicTacToe But You Always Loose</p>
+        <div id="logo">
+          <img src={titac} className="tictac" alt="" />
+          <img src={toe} className="logo" alt="" />
         </div>
-        <div className="game-info">
-          <button className="but" onClick={() => this.stepInHistory(-1)}>
-            Backward
-          </button>
-          <button className="but" onClick={() => this.stepInHistory(1)}>
-            Forward
-          </button>
+        <div className="game">
+          <div className="game-board">
+            <Board
+              squares={current.squares}
+              onClick={i => this.handleClick(i)}
+              lineStyle={winningline}
+            />
+          </div>
+          <div className="gameButtons">
+            <button
+              className="but"
+              onClick={() => {
+                this.setState({ stepNumber: 0 });
+              }}
+            >
+              <i className="icon-ccw"></i>
+            </button>
+            <div>
+              <button className="but" onClick={() => this.stepInHistory(-1)}>
+                <i className="icon-left-big"></i>
+              </button>
+              <button className="but" onClick={() => this.stepInHistory(1)}>
+                <i className="icon-right-big"></i>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );

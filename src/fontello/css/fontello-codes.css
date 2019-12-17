@@ -1,0 +1,4 @@
+
+.icon-left-big:before { content: '\e800'; } /* '' */
+.icon-right-big:before { content: '\e801'; } /* '' */
+.icon-ccw:before { content: '\e802'; } /* '' */

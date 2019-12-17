@@ -1,11 +1,24 @@
 $boardBorder: 3px;
-$squareSize: 10vmax;
+$squareSize: 18vh;
 
 $boardBackground: #362f1b;
 $ticColor: #d4b357;
 
-$gridLineBorder: 0.7vmax;
+$gridLineBorder: 0.7vh;
 
+i {
+  font-size: 6vmin;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+#title {
+  font-size: 2.5em;
+}
+#logo {
+}
 .gridLines {
   box-sizing: border-box;
   opacity: 0.6;
@@ -39,6 +52,7 @@ body {
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   box-sizing: border-box;
   font: 14px "Century Gothic", Futura, sans-serif;
+  // font: 14px "Courier New", Courier, monospace;
   color: #e0d7ba;
   // background-color: #353535;
   text-align: center;
@@ -69,6 +83,7 @@ li {
 }
 
 .square {
+  cursor: pointer;
   background-color: rgba(255, 255, 255, 0);
   padding: 0;
   opacity: 1;
@@ -89,35 +104,32 @@ li {
 
 .game-board {
   flex: 0 0 auto;
+  max-height: 100%;
 }
 .game {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 img {
   flex: 0 0 auto;
-  height: 8vmax;
-  margin-bottom: 2vmax;
+  height: 8vh;
 }
-#stat {
-  margin-bottom: 20px;
-  font-size: 3vmax;
-}
-.game-info {
-  text-align: center;
+.gameButtons {
+  margin-left: 2vw;
 }
 .but {
+  cursor: pointer;
   background: none;
   border: none;
   border-radius: 10px;
   padding: 0.5em;
   color: #e0d7ba;
   transition: 0.3s;
-  font-size: calc(1.9vmax + 2px);
+  font-size: 1.5em;
 }
 button:focus {
   outline: none;
