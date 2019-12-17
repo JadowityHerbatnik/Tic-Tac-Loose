@@ -4,14 +4,17 @@ class Buttons extends React.Component {
   render() {
     return (
       <div className="gameButtons">
-        <button className="but">
+        <button
+          className="but"
+          onClick={() => this.props.stepInHistory(this.props.currentStep * -1)}
+        >
           <i className="icon-ccw"></i>
         </button>
         <div>
-          <button className="but" onClick={() => this.stepInHistory(-1)}>
+          <button className="but" onClick={() => this.props.stepInHistory(-1)}>
             <i className="icon-left-big"></i>
           </button>
-          <button className="but" onClick={() => this.stepInHistory(1)}>
+          <button className="but" onClick={() => this.props.stepInHistory(1)}>
             <i className="icon-right-big"></i>
           </button>
         </div>

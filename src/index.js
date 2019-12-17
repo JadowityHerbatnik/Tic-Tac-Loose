@@ -96,8 +96,8 @@ class Game extends React.Component {
         <div id="logo">
           <img src={titac} className="tictac" alt="" />
           <img src={toe} className="logo" alt="" />
+          <p id="title">But You Always Loose</p>
         </div>
-        <p id="title">TicTacToe But You Always Loose</p>
         <div className="game">
           <div className="game-board">
             <Board
@@ -106,7 +106,10 @@ class Game extends React.Component {
               lineStyle={winningline}
             />
           </div>
-          <Buttons />
+          <Buttons
+            currentStep={this.state.stepNumber}
+            stepInHistory={direction => this.stepInHistory(direction)}
+          />
         </div>
       </div>
     );
