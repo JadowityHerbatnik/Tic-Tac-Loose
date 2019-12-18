@@ -99,13 +99,11 @@ class Game extends React.Component {
           <p id="title">But You Always Loose</p>
         </div>
         <div className="game">
-          <div className="game-board">
-            <Board
-              squares={current.squares}
-              onClick={i => this.handleClick(i)}
-              lineStyle={winningline}
-            />
-          </div>
+          <Board
+            squares={current.squares}
+            onClick={i => this.handleClick(i)}
+            lineStyle={winningline}
+          />
           <Buttons
             currentStep={this.state.stepNumber}
             stepInHistory={direction => this.stepInHistory(direction)}

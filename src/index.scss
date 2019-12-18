@@ -1,11 +1,12 @@
 $boardBorder: 3px;
 $squareSize: 18vh;
+// $squareSize: 10vmax;
 
 $boardBackground: #362f1b;
 $ticColor: #d4b357;
 
 $gridLineBorder: 0.7vh;
-
+// $gridLineBorder: 1vmax;
 i {
   font-size: 1.5em;
 }
@@ -15,10 +16,14 @@ i {
   height: 100vh;
 }
 #title {
-  margin: 0 0 10px 0;
   font-size: 2.5em;
 }
 #logo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 20px 0 20px 0;
 }
 .gridLines {
@@ -62,6 +67,8 @@ body {
 .board {
   position: relative;
   border: none;
+  flex: 0 0 auto;
+  max-height: 100%;
 }
 ol,
 ul {
@@ -103,10 +110,6 @@ li {
   text-align: center;
 }
 
-.game-board {
-  flex: 0 0 auto;
-  max-height: 100%;
-}
 .game {
   flex: 1 1 auto;
   display: flex;
@@ -120,7 +123,9 @@ img {
   height: 8vh;
 }
 .gameButtons {
-  // margin: 0 2vw 0 2vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin: 0;
 }
 .but {
@@ -129,7 +134,6 @@ img {
   background: none;
   border: none;
   border-radius: 10px;
-  padding: 0.5em;
   color: #e0d7ba;
   transition: 0.3s;
   font-size: 1.5em;

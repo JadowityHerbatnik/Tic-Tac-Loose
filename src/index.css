@@ -9,11 +9,15 @@ i {
 }
 
 #title {
-  margin: 0 0 10px 0;
   font-size: 2.5em;
 }
 
 #logo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 20px 0 20px 0;
 }
 
@@ -60,6 +64,8 @@ body {
 .board {
   position: relative;
   border: none;
+  flex: 0 0 auto;
+  max-height: 100%;
 }
 
 ol,
@@ -105,11 +111,6 @@ li {
   text-align: center;
 }
 
-.game-board {
-  flex: 0 0 auto;
-  max-height: 100%;
-}
-
 .game {
   flex: 1 1 auto;
   display: flex;
@@ -125,6 +126,9 @@ img {
 }
 
 .gameButtons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin: 0;
 }
 
@@ -134,7 +138,6 @@ img {
   background: none;
   border: none;
   border-radius: 10px;
-  padding: 0.5em;
   color: #e0d7ba;
   transition: 0.3s;
   font-size: 1.5em;
