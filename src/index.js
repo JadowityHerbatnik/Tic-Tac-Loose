@@ -4,6 +4,7 @@ import "./index.css";
 import "./fontello/css/fontello.css";
 import toe from "./img/toe.png";
 import titac from "./img/tictac.ico";
+import logo from "./img/logo.png";
 import Board from "./Board.js";
 import Buttons from "./buttons.js";
 import { getWinner, lineStyle } from "./winner.js";
@@ -94,8 +95,7 @@ class Game extends React.Component {
     return (
       <div className="container">
         <div id="logo">
-          <img src={titac} className="tictac" alt="" />
-          <img src={toe} className="logo" alt="" />
+          <img src={logo} alt="" />
           <p id="title">But You Always Loose</p>
         </div>
         <div className="game">
