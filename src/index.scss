@@ -1,5 +1,5 @@
 $boardBorder: 3px;
-$squareSize: 18vh;
+$squareSize: 17vh;
 // $squareSize: 10vmax;
 
 $boardBackground: #362f1b;
@@ -7,6 +7,27 @@ $ticColor: #d4b357;
 
 $gridLineBorder: 0.7vh;
 // $gridLineBorder: 1vmax;
+#gameOver {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(7px);
+  z-index: 100;
+  opacity: 0;
+  transition: 1s;
+  pointer-events: none;
+}
+#gameOverText {
+  margin: 10vh 0 10vh 0;
+  font-size: 20vh;
+}
+#resetButton {
+  font-size: 7vh;
+  opacity: 1;
+}
 i {
   font-size: 1.5em;
 }
@@ -15,8 +36,14 @@ i {
   flex-direction: column;
   height: 100vh;
 }
+img {
+  flex: 0 0 auto;
+  height: 7vh;
+  margin: 0 2vw 0 2vw;
+}
 #title {
-  font-size: 2.5em;
+  font-size: 6vh;
+  margin: 0;
 }
 #logo {
   display: flex;
@@ -24,7 +51,7 @@ i {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 20px 0;
+  margin: 5vh 0 10px 0;
 }
 .gridLines {
   box-sizing: border-box;
@@ -118,20 +145,19 @@ li {
   justify-content: center;
   align-items: center;
 }
-img {
-  flex: 0 0 auto;
-  height: 8vh;
-}
 .gameButtons {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   margin: 0;
 }
+#historyButtons {
+  flex: 1 1 auto;
+}
 .but {
   cursor: pointer;
   opacity: 0.6;
-  background: none;
+  background: #917524;
   border: none;
   border-radius: 10px;
   color: #e0d7ba;

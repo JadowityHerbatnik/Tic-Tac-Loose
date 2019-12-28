@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "./fontello/css/fontello.css";
-import toe from "./img/toe.png";
-import titac from "./img/tictac.ico";
 import logo from "./img/logo.png";
 import Board from "./Board.js";
-import Buttons from "./buttons.js";
+// import Buttons from "./buttons.js";
+import GameOver from "./gameover.js";
 import { getWinner, lineStyle } from "./winner.js";
 import { nextMove, switcher } from "./switcher.js";
 
@@ -87,10 +86,8 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-
-    let winningline;
-
-    winningline = lineStyle(current.squares);
+    let winner = getWinner(current.squares);
+    let winningline = lineStyle(current.squares);
 
     return (
       <div className="container">
@@ -104,11 +101,16 @@ class Game extends React.Component {
             onClick={i => this.handleClick(i)}
             lineStyle={winningline}
           />
-          <Buttons
+          {/*}          <Buttons
             currentStep={this.state.stepNumber}
             stepInHistory={direction => this.stepInHistory(direction)}
-          />
+					/>{*/}
         </div>
+        <GameOver
+          winner={winner}
+          currentStep={this.state.stepNumber}
+          onClick={direction => this.stepInHistory(direction)}
+        />
       </div>
     );
   }

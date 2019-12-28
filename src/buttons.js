@@ -10,7 +10,7 @@ class Buttons extends React.Component {
         >
           <i className="icon-ccw"></i>
         </button>
-        <div>
+        <div id="historyButtons">
           <button className="but" onClick={() => this.props.stepInHistory(-1)}>
             <i className="icon-left-big"></i>
           </button>
