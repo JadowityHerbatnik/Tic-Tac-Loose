@@ -1,12 +1,10 @@
 $boardBorder: 3px;
 $squareSize: 17vh;
-// $squareSize: 10vmax;
 
 $boardBackground: #362f1b;
 $ticColor: #d4b357;
 
 $gridLineBorder: 0.7vh;
-// $gridLineBorder: 1vmax;
 #gameOver {
   position: fixed;
   left: 0;
@@ -14,19 +12,17 @@ $gridLineBorder: 0.7vh;
   height: 100vh;
   width: 100vw;
   background-color: rgba(255, 255, 255, 0);
+  @supports (not (backdrop-filter: blur())) {
+    background-color: rgba(51, 28, 4, 0.95);
+  }
   backdrop-filter: blur(7px);
-  z-index: 100;
   opacity: 0;
-  transition: 1s;
+  transition: opacity 1s;
   pointer-events: none;
 }
 #gameOverText {
   margin: 10vh 0 10vh 0;
   font-size: 20vh;
-}
-#resetButton {
-  font-size: 7vh;
-  opacity: 1;
 }
 i {
   font-size: 1.5em;
@@ -74,20 +70,17 @@ img {
   position: absolute;
   width: 0;
   border-radius: 10px;
-  transition-property: width; //Yeah, transform and scaleX is faster, but I'll have to figure out how to animate rotation and scale separately without knowing the rotation angle beforehand + it's going to be defined by React on the element in html which obv overrides css
-  transition-duration: 1s;
   transform-origin: left;
   background-color: #c00;
-  transition-delay: 1s;
+  transition: width 1s 1s;
+  //Yeah, transform and scaleX is faster, but I'll have to figure out how to animate rotation and scale separately without knowing the rotation angle beforehand + it's going to be defined by React on the element in html which obv overrides css
 }
 body {
   background-color: #452e00;
   background-image: url("./img/black-linen.png");
   box-sizing: border-box;
   font: 14px "Century Gothic", Futura, sans-serif;
-  // font: 14px "Courier New", Courier, monospace;
   color: #e0d7ba;
-  // background-color: #353535;
   text-align: center;
   margin: auto;
 }
@@ -156,13 +149,13 @@ li {
 }
 .but {
   cursor: pointer;
-  opacity: 0.6;
   background: #917524;
   border: none;
+  padding: 1vh;
   border-radius: 10px;
   color: #e0d7ba;
   transition: 0.3s;
-  font-size: 1.5em;
+  font-size: 3.5em;
 }
 button:focus {
   outline: none;
