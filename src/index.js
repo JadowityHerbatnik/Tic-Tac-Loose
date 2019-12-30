@@ -4,7 +4,6 @@ import "./index.css";
 import "./fontello/css/fontello.css";
 import logo from "./img/logo.png";
 import Board from "./Board.js";
-// import Buttons from "./buttons.js";
 import GameOver from "./gameover.js";
 import { getWinner, lineStyle } from "./winner.js";
 import { nextMove, switcher } from "./switcher.js";
@@ -13,11 +12,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [
-        {
-          squares: Array(9).fill(null)
-        }
-      ],
+      squares: Array(9).fill(null),
       stepNumber: 0,
       player: "X",
       canPlay: true
@@ -25,10 +20,8 @@ class Game extends React.Component {
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    const winner = getWinner(current.squares);
+    const squares = this.state.squares;
+    const winner = getWinner(squares);
     const switchNumber = 3;
 
     if (winner || squares[i] || this.state.canPlay === false) {
@@ -36,12 +29,8 @@ class Game extends React.Component {
     }
     squares[i] = this.state.player;
     this.setState({
-      history: history.concat([
-        {
-          squares: squares
-        }
-      ]),
-      stepNumber: history.length,
+      squares: squares,
+      stepNumber: this.state.stepNumber + 1,
       canPlay: false
     });
 
@@ -69,25 +58,17 @@ class Game extends React.Component {
   reset() {
     this.setState({ player: "X", canPlay: true });
   }
-  stepInHistory(direction) {
-    const history = this.state.history;
+  stepInHistory() {
     const currentStep = this.state.stepNumber;
-    if (
-      (direction === 1 && currentStep === history.length - 1) ||
-      (direction === -1 && currentStep === 0)
-    ) {
-      return 1;
-    }
     this.setState({
-      stepNumber: currentStep + direction
+      squares: Array(9).fill(null),
+      stepNumber: 0
     });
   }
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    let winner = getWinner(current.squares);
-    let winningline = lineStyle(current.squares);
+    let winner = getWinner(this.state.squares);
+    let winningline = lineStyle(this.state.squares);
 
     return (
       <div className="container">
@@ -97,19 +78,15 @@ class Game extends React.Component {
         </div>
         <div className="game">
           <Board
-            squares={current.squares}
+            squares={this.state.squares}
             onClick={i => this.handleClick(i)}
             lineStyle={winningline}
           />
-          {/*}          <Buttons
-            currentStep={this.state.stepNumber}
-            stepInHistory={direction => this.stepInHistory(direction)}
-					/>{*/}
         </div>
         <GameOver
           winner={winner}
           currentStep={this.state.stepNumber}
-          onClick={direction => this.stepInHistory(direction)}
+          onClick={() => this.stepInHistory()}
         />
       </div>
     );

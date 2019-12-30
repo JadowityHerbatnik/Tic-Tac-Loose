@@ -19,7 +19,7 @@ class GameOver extends React.Component {
         <button
           id="resetButton"
           className="but"
-          onClick={() => this.props.onClick(this.props.currentStep * -1)}
+          onClick={() => this.props.onClick()}
         >
           Try Again
         </button>

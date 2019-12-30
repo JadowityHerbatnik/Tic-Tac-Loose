@@ -15,7 +15,7 @@ $gridLineBorder: 0.7vh;
   @supports (not (backdrop-filter: blur())) {
     background-color: rgba(51, 28, 4, 0.95);
   }
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(10px);
   opacity: 0;
   transition: opacity 1s;
   pointer-events: none;
@@ -137,15 +137,6 @@ li {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-}
-.gameButtons {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 0;
-}
-#historyButtons {
-  flex: 1 1 auto;
 }
 .but {
   cursor: pointer;
