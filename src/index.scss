@@ -6,6 +6,9 @@ $ticColor: #d4b357;
 
 $gridLineBorder: 0.7vh;
 #gameOver {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   left: 0;
   top: 0;
@@ -21,8 +24,21 @@ $gridLineBorder: 0.7vh;
   pointer-events: none;
 }
 #gameOverText {
-  margin: 10vh 0 10vh 0;
-  font-size: 20vh;
+  font-size: 15vh;
+}
+.but {
+  cursor: pointer;
+  background: #d4b357;
+  color: #544418;
+  border: none;
+  padding: 1vh;
+  border-radius: 10px;
+  transition: 0.3s;
+  font-size: 8vh;
+}
+.but:hover {
+  background: #917524;
+  // color: #e0d7ba;
 }
 i {
   font-size: 1.5em;
@@ -138,22 +154,8 @@ li {
   justify-content: center;
   align-items: center;
 }
-.but {
-  cursor: pointer;
-  background: #917524;
-  border: none;
-  padding: 1vh;
-  border-radius: 10px;
-  color: #e0d7ba;
-  transition: 0.3s;
-  font-size: 3.5em;
-}
 button:focus {
   outline: none;
-}
-.but:hover {
-  background: #d4b357;
-  color: #544418;
 }
 .X,
 .O {

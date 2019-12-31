@@ -5,8 +5,8 @@ import "./fontello/css/fontello.css";
 import logo from "./img/logo.png";
 import Board from "./Board.js";
 import GameOver from "./gameover.js";
-import { getWinner, lineStyle } from "./winner.js";
-import { nextMove, switcher } from "./switcher.js";
+import { getWinner, lineStyle, canComputerWin } from "./winner.js";
+import { nextMove } from "./switcher.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -22,7 +22,6 @@ class Game extends React.Component {
   handleClick(i) {
     const squares = this.state.squares;
     const winner = getWinner(squares);
-    const switchNumber = 3;
 
     if (winner || squares[i] || this.state.canPlay === false) {
       return;
@@ -34,13 +33,8 @@ class Game extends React.Component {
       canPlay: false
     });
 
-    if (this.state.stepNumber === switchNumber) {
-      if (switcher(squares) !== 100) {
-        this.setState({ player: "O" });
-        squares[i] = "O";
-      }
-    } else {
-      squares[i] = this.state.player;
+    if (!canComputerWin(squares)) {
+      squares[i] = "O";
     }
 
     if (!getWinner(squares)) {
@@ -58,8 +52,7 @@ class Game extends React.Component {
   reset() {
     this.setState({ player: "X", canPlay: true });
   }
-  stepInHistory() {
-    const currentStep = this.state.stepNumber;
+  restartGame() {
     this.setState({
       squares: Array(9).fill(null),
       stepNumber: 0
@@ -86,7 +79,7 @@ class Game extends React.Component {
         <GameOver
           winner={winner}
           currentStep={this.state.stepNumber}
-          onClick={() => this.stepInHistory()}
+          onClick={() => this.restartGame()}
         />
       </div>
     );

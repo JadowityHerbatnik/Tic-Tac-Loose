@@ -1,5 +1,5 @@
-function calculateWinner(squares) {
-  const lines = [
+function getLines() {
+  return [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -9,13 +9,28 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6]
   ];
-  for (let i = 0; i < lines.length; i++) {
+}
+
+function calculateWinner(squares) {
+  const lines = getLines();
+  const len = lines.length;
+  for (let i = 0; i < len; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      let winnerSquares = [a, c];
-      return winnerSquares;
+      return [a, c];
     }
   }
+}
+function isWinPossible(squares) {
+  const lines = getLines();
+  const len = lines.length;
+  for (let i = 0; i < len; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] !== "X" && squares[b] !== "X" && squares[c] !== "X") {
+      return true;
+    }
+  }
+  return false;
 }
 
 function getLineStyle(squares) {
@@ -77,3 +92,4 @@ function getLineStyle(squares) {
 
 export const getWinner = calculateWinner;
 export const lineStyle = getLineStyle;
+export const canComputerWin = isWinPossible;
