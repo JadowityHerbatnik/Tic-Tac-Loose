@@ -25,6 +25,7 @@ $gridLineBorder: 0.7vh;
 }
 #gameOverText {
   font-size: 15vh;
+  // color: $ticColor;
 }
 .but {
   cursor: pointer;
@@ -41,12 +42,15 @@ $gridLineBorder: 0.7vh;
   // color: #e0d7ba;
 }
 i {
-  font-size: 1.5em;
+  font-size: 8vh;
 }
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  @media only screen and (orientation: portrait) {
+    height: 90vh;
+  }
 }
 img {
   flex: 0 0 auto;
@@ -54,25 +58,29 @@ img {
   margin: 0 2vw 0 2vw;
 }
 #title {
-  font-size: 6vh;
+  font-size: 7vh;
   margin: 0;
 }
 #logo {
   display: flex;
+  padding: 0 4vw 0 4vw;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 5vh 0 10px 0;
+  margin: 5vh 0 5vh 0;
 }
 .gridLines {
   box-sizing: border-box;
   opacity: 0.6;
   position: absolute;
-  left: $squareSize - $gridLineBorder/2;
+  // left: $squareSize - $gridLineBorder/2;
+  left: calc(100% / 3);
   top: 0;
-  height: $squareSize * 3;
-  width: $squareSize + $gridLineBorder;
+  // height: $squareSize * 3;
+  // width: $squareSize + $gridLineBorder;
+  height: 100%;
+  width: calc(100% / 3);
   border-width: 0px $gridLineBorder 0px $gridLineBorder;
   border-style: solid;
   border-color: #e0d7ba;
@@ -91,9 +99,14 @@ img {
   transition: width 1s 1s;
   //Yeah, transform and scaleX is faster, but I'll have to figure out how to animate rotation and scale separately without knowing the rotation angle beforehand + it's going to be defined by React on the element in html which obv overrides css
 }
+html,
+body,
+#root {
+  height: 100%;
+}
 body {
   background-color: #452e00;
-  background-image: url("./img/black-linen.png");
+  background-image: url("../img/black-linen.png");
   box-sizing: border-box;
   font: 14px "Century Gothic", Futura, sans-serif;
   color: #e0d7ba;
@@ -106,16 +119,7 @@ body {
   flex: 0 0 auto;
   max-height: 100%;
 }
-ol,
-ul {
-  padding-left: 0px;
-  list-style-type: none;
-}
-li {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-}
+
 .board-row:after {
   clear: both;
   content: "";

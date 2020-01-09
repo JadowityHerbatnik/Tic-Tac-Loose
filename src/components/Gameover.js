@@ -1,4 +1,5 @@
 import React from "react";
+import "../fontello/css/fontello.css";
 
 class GameOver extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class GameOver extends React.Component {
           className="but"
           onClick={() => this.props.onClick()}
         >
+          <i className="icon-ccw"></i>
           Try Again
         </button>
       </div>

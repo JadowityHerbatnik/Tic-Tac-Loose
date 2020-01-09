@@ -1,11 +1,10 @@
 import React from "react";
-import "./index.css";
-import "./fontello/css/fontello.css";
+import "./styles/index.css";
 import logo from "./img/logo.png";
-import Board from "./Board.js";
-import GameOver from "./gameover.js";
-import { getWinner, lineStyle, canComputerWin } from "./winner.js";
-import { nextMove } from "./switcher.js";
+import Board from "./components/Board.js";
+import GameOver from "./components/Gameover.js";
+import { getWinner, lineStyle, canComputerWin } from "./helpers/winner.js";
+import { nextMove } from "./helpers/switcher.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ class Game extends React.Component {
     };
   }
 
-  handleClick(i) {
+  clickOnSquare(i) {
     const squares = this.state.squares;
     const winner = getWinner(squares);
 
@@ -68,13 +67,11 @@ class Game extends React.Component {
           <img src={logo} alt="" />
           <p id="title">But You Always Loose</p>
         </div>
-        <div className="game">
-          <Board
-            squares={this.state.squares}
-            onClick={i => this.handleClick(i)}
-            lineStyle={winningline}
-          />
-        </div>
+        <Board
+          squares={this.state.squares}
+          onClick={i => this.clickOnSquare(i)}
+          lineStyle={winningline}
+        />
         <GameOver
           winner={winner}
           currentStep={this.state.stepNumber}
