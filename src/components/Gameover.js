@@ -3,7 +3,6 @@ import "../fontello/css/fontello.css";
 
 class GameOver extends React.Component {
   render() {
-    // let style = { opacity: 0, pointerEvents: "none" };
     let style = {};
     if (this.props.winner) {
       style.opacity = 1;

@@ -11,8 +11,6 @@ class Game extends React.Component {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      stepNumber: 0,
-      player: "X",
       canPlay: true
     };
   }
@@ -24,36 +22,35 @@ class Game extends React.Component {
     if (winner || squares[i] || this.state.canPlay === false) {
       return;
     }
-    squares[i] = this.state.player;
-    this.setState({
-      squares: squares,
-      stepNumber: this.state.stepNumber + 1,
-      canPlay: false
-    });
+    squares[i] = "X";
 
     if (!canComputerWin(squares)) {
       squares[i] = "O";
     }
 
+    this.setState({
+      squares: squares,
+      canPlay: false
+    });
+
     if (!getWinner(squares)) {
       setTimeout(() => {
         squares[nextMove(squares)] = "O";
         if (getWinner(squares)) {
-          this.reset();
+          this.allowToMakeMove();
         }
         this.setState({ squares: squares, canPlay: true });
       }, 500);
     } else {
-      this.reset();
+      this.allowToMakeMove();
     }
   }
-  reset() {
-    this.setState({ player: "X", canPlay: true });
+  allowToMakeMove() {
+    this.setState({ canPlay: true });
   }
   restartGame() {
     this.setState({
-      squares: Array(9).fill(null),
-      stepNumber: 0
+      squares: Array(9).fill(null)
     });
   }
 
@@ -65,18 +62,14 @@ class Game extends React.Component {
       <div className="container">
         <div id="logo">
           <img src={logo} alt="" />
-          <p id="title">But You Always Loose</p>
+          <h1 id="title">But You Always Loose</h1>
         </div>
         <Board
           squares={this.state.squares}
           onClick={i => this.clickOnSquare(i)}
           lineStyle={winningline}
         />
-        <GameOver
-          winner={winner}
-          currentStep={this.state.stepNumber}
-          onClick={() => this.restartGame()}
-        />
+        <GameOver winner={winner} onClick={() => this.restartGame()} />
       </div>
     );
   }

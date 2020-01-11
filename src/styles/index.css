@@ -1,3 +1,24 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #452e00;
+  background-image: url("../img/black-linen.png");
+  font: 14px "Century Gothic", Futura, sans-serif;
+  color: #e0d7ba;
+  text-align: center;
+  margin: auto;
+}
+
 #gameOver {
   display: flex;
   flex-direction: column;
@@ -75,7 +96,6 @@ img {
 }
 
 .gridLines {
-  box-sizing: border-box;
   opacity: 0.6;
   position: absolute;
   left: calc(100% / 3);
@@ -100,22 +120,6 @@ img {
   transform-origin: left;
   background-color: #c00;
   transition: width 1s 1s;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-}
-
-body {
-  background-color: #452e00;
-  background-image: url("../img/black-linen.png");
-  box-sizing: border-box;
-  font: 14px "Century Gothic", Futura, sans-serif;
-  color: #e0d7ba;
-  text-align: center;
-  margin: auto;
 }
 
 .board {

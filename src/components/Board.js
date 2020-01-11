@@ -20,12 +20,9 @@ function LineDiv(props) {
 
 class Board extends React.Component {
   renderSquare({ height, width }, i) {
-    // let { height, width } = size;
-    let shorter = Math.min(height, width);
-    let squareSize = shorter / 3.4;
-    let squareStyle = {};
-    squareStyle.width = squareSize;
-    squareStyle.height = squareSize;
+    let shorterSide = Math.min(height, width);
+    let squareSize = shorterSide / 3.4;
+    let squareStyle = { width: squareSize, height: squareSize };
     return (
       <Square
         value={this.props.squares[i]}
