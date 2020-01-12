@@ -3,7 +3,7 @@ import { SizeMe } from "react-sizeme";
 import "../fontello/css/fontello.css";
 
 function Square(props) {
-  const className = `${
+  const iconClassName = `${
     props.value === null
       ? null
       : `icon-${props.value === "X" ? "cancel-1" : "record-outline"}`
@@ -14,29 +14,49 @@ function Square(props) {
       style={props.squareStyle}
       onClick={props.onClick}
     >
-      <div className={`tic ${props.value}`} style={props.ticFont}>
-        <i className={className}></i>
+      <div className={`tic ${props.value}`} style={props.fontSize}>
+        <i className={iconClassName}></i>
       </div>
     </button>
   );
 }
-function LineDiv(props) {
-  return <div className={props.className} style={props.lineStyle}></div>;
-}
 
 class Board extends React.Component {
-  renderSquare({ height, width }, i) {
-    let shorterSide = Math.min(height, width);
-    let squareSize = shorterSide / 3.4;
-    let squareStyle = { width: squareSize, height: squareSize };
-
+  renderSquare(squareSize, i) {
     return (
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
-        squareStyle={squareStyle}
-        ticFont={{ fontSize: squareSize / 15 }}
+        squareStyle={{ width: squareSize, height: squareSize }}
+        fontSize={{ fontSize: squareSize / 15 }}
       />
+    );
+  }
+
+  renderBoard({ height, width }) {
+    let shorterSide = Math.min(height, width);
+    let squareSize = shorterSide / 3.4;
+    return (
+      <div className="board">
+        <div className="board-row">
+          {this.renderSquare(squareSize, 0)}
+          {this.renderSquare(squareSize, 1)}
+          {this.renderSquare(squareSize, 2)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(squareSize, 3)}
+          {this.renderSquare(squareSize, 4)}
+          {this.renderSquare(squareSize, 5)}
+        </div>
+        <div className="board-row">
+          {this.renderSquare(squareSize, 6)}
+          {this.renderSquare(squareSize, 7)}
+          {this.renderSquare(squareSize, 8)}
+        </div>
+        <div className="gridLines"></div>
+        <div className="gridLines rotate"></div>
+        <div className="line" style={this.props.lineStyle} />
+      </div>
     );
   }
 
@@ -45,28 +65,7 @@ class Board extends React.Component {
       <SizeMe
         monitorHeight
         render={({ size }) => (
-          <div className="game">
-            <div className="board">
-              <div className="board-row">
-                {this.renderSquare(size, 0)}
-                {this.renderSquare(size, 1)}
-                {this.renderSquare(size, 2)}
-              </div>
-              <div className="board-row">
-                {this.renderSquare(size, 3)}
-                {this.renderSquare(size, 4)}
-                {this.renderSquare(size, 5)}
-              </div>
-              <div className="board-row">
-                {this.renderSquare(size, 6)}
-                {this.renderSquare(size, 7)}
-                {this.renderSquare(size, 8)}
-              </div>
-              <div className="gridLines"></div>
-              <div className="gridLines rotate"></div>
-              <LineDiv className="line" lineStyle={this.props.lineStyle} />
-            </div>
-          </div>
+          <div className="game">{this.renderBoard(size)}</div>
         )}
       />
     );
