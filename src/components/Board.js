@@ -13,6 +13,7 @@ function Square(props) {
       className="square"
       style={props.squareStyle}
       onClick={props.onClick}
+      aria-label={props.arialabel}
     >
       <div className={`tic ${props.value}`} style={props.fontSize}>
         <i className={iconClassName}></i>
@@ -29,6 +30,7 @@ class Board extends React.Component {
         onClick={() => this.props.onClick(i)}
         squareStyle={{ width: squareSize, height: squareSize }}
         fontSize={{ fontSize: squareSize / 15 }}
+        arialabel={`board field no. ${i + 1}`}
       />
     );
   }
