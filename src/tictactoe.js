@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/index.css";
-import logo from "./img/logo.png";
+import logo from "./img/logo.webp";
 import Board from "./components/Board.js";
 import GameOver from "./components/Gameover.js";
 import { getWinner, lineStyle, canComputerWin } from "./helpers/winner.js";
