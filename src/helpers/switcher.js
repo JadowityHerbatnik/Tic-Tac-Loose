@@ -1,6 +1,6 @@
 import Minimax from "tic-tac-toe-minimax";
 
-function getMove(squares) {
+function getBestMove(squares) {
   const { ComputerMove } = Minimax;
 
   const symbols = {
@@ -8,11 +8,9 @@ function getMove(squares) {
     aiPlayer: "O"
   };
   const difficulty = "Hard";
-  const board = Array(9).fill(null);
-  squares.forEach((value, index) => {
-    board[index] = value ? value : index;
+  const board = squares.map((value, index) => {
+    return value ? value : index;
   });
-  const nextMove = ComputerMove(board, symbols, difficulty);
-  return nextMove;
+  return ComputerMove(board, symbols, difficulty);
 }
-export const nextMove = getMove;
+export default getBestMove;

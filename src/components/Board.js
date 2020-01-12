@@ -1,7 +1,13 @@
 import React from "react";
 import { SizeMe } from "react-sizeme";
+import "../fontello/css/fontello.css";
 
 function Square(props) {
+  const className = `${
+    props.value === null
+      ? null
+      : `icon-${props.value === "X" ? "cancel-1" : "record-outline"}`
+  }`;
   return (
     <button
       className="square"
@@ -9,7 +15,7 @@ function Square(props) {
       onClick={props.onClick}
     >
       <div className={`tic ${props.value}`} style={props.ticFont}>
-        {props.value}
+        <i className={className}></i>
       </div>
     </button>
   );
@@ -23,6 +29,7 @@ class Board extends React.Component {
     let shorterSide = Math.min(height, width);
     let squareSize = shorterSide / 3.4;
     let squareStyle = { width: squareSize, height: squareSize };
+
     return (
       <Square
         value={this.props.squares[i]}

@@ -4,7 +4,7 @@ import logo from "./img/logo.png";
 import Board from "./components/Board.js";
 import GameOver from "./components/Gameover.js";
 import { getWinner, lineStyle, canComputerWin } from "./helpers/winner.js";
-import { nextMove } from "./helpers/switcher.js";
+import getBestMove from "./helpers/switcher.js";
 
 class Game extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class Game extends React.Component {
 
     if (!getWinner(squares)) {
       setTimeout(() => {
-        squares[nextMove(squares)] = "O";
+        squares[getBestMove(squares)] = "O";
         if (getWinner(squares)) {
           this.allowToMakeMove();
         }

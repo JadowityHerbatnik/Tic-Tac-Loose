@@ -48,6 +48,7 @@ body {
   cursor: pointer;
   background: #d4b357;
   color: #544418;
+  max-width: 80vw;
   border: none;
   padding: 1vh;
   border-radius: 10px;
@@ -55,10 +56,11 @@ body {
   font-size: 8vh;
 }
 
-.but:hover {
-  background: #917524;
+@media (hover: hover) and (pointer: fine) {
+  .but:hover {
+    background: #917524;
+  }
 }
-
 i {
   font-size: 8vh;
 }
@@ -147,17 +149,16 @@ img {
   border-radius: 0px;
   border: none;
   float: left;
-  width: 17vh;
-  height: 17vh;
 }
 
 .tic {
-  opacity: 0;
+  opacity: 1;
   color: #d4b357;
-  font-size: 1.38125vh;
-  font-weight: bold;
   padding: 0;
   text-align: center;
+}
+.tic i {
+  font-size: 3.5em;
 }
 
 .game {
@@ -178,7 +179,7 @@ button:focus {
   margin: auto;
   display: block;
   width: min-content;
-  transform: scale(8);
+  transform: scale(3);
   opacity: 0.8;
   transition: 0.3s;
 }
