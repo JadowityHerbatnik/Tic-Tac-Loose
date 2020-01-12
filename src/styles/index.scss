@@ -48,14 +48,17 @@ body {
   cursor: pointer;
   background: #d4b357;
   color: #544418;
+  max-width: 80vw;
   border: none;
   padding: 1vh;
   border-radius: 10px;
   transition: 0.3s;
   font-size: 8vh;
 }
-.but:hover {
-  background: #917524;
+@media (hover: hover) and (pointer: fine) {
+  .but:hover {
+    background: #917524;
+  }
 }
 i {
   font-size: 8vh;
