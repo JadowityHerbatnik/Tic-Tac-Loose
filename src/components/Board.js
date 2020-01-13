@@ -29,7 +29,7 @@ class Board extends React.Component {
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
         squareStyle={{ width: squareSize, height: squareSize }}
-        fontSize={{ fontSize: squareSize / 15 }}
+        fontSize={{ fontSize: squareSize / 4 }}
         arialabel={`board field no. ${i + 1}`}
       />
     );

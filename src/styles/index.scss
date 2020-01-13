@@ -52,14 +52,11 @@ body {
   border-radius: 10px;
   transition: 0.3s;
   font-size: 8vh;
-}
-@media (hover: hover) and (pointer: fine) {
-  .but:hover {
-    background: #917524;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: #917524;
+    }
   }
-}
-i {
-  font-size: 8vh;
 }
 .container {
   display: flex;
@@ -139,9 +136,6 @@ img {
   color: $ticColor;
   padding: 0;
   text-align: center;
-  & i {
-    font-size: 3.5em;
-  }
 }
 
 .game {
@@ -158,7 +152,6 @@ button:focus {
 .X,
 .O {
   margin: auto;
-  display: block;
   width: min-content;
   transform: scale(3);
   opacity: 0.8;
