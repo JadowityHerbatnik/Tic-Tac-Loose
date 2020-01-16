@@ -37,10 +37,10 @@ body {
   opacity: 0;
   transition: opacity 1s;
   pointer-events: none;
-}
-#gameOverText {
-  font-size: 15vh;
-  text-shadow: 0px 0px 25px rgba(248, 255, 232, 1);
+  p {
+    font-size: 15vh;
+    text-shadow: 0px 0px 25px rgba(248, 255, 232, 1);
+  }
 }
 .but {
   cursor: pointer;
