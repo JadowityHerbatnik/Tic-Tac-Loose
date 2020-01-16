@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/index.css";
 import logo from "./img/logo.webp";
 import Board from "./components/Board.js";
@@ -6,76 +6,66 @@ import GameOver from "./components/Gameover.js";
 import { getWinner, lineStyle, canComputerWin } from "./helpers/winner.js";
 import getBestMove from "./helpers/switcher.js";
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      canPlay: true
-    };
-  }
+function Game() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [canPlay, setCanPlay] = useState(true);
 
-  clickOnSquare(i) {
-    const squares = this.state.squares;
-    const winner = getWinner(squares);
+  function clickOnSquare(i) {
+    const squareCopy = [...squares];
+    const winner = getWinner(squareCopy);
 
-    if (winner || squares[i] || this.state.canPlay === false) {
+    if (winner || squareCopy[i] || canPlay === false) {
       return;
     }
-    squares[i] = "X";
+    squareCopy[i] = "X";
 
-    if (!canComputerWin(squares)) {
-      squares[i] = "O";
+    if (!canComputerWin(squareCopy)) {
+      squareCopy[i] = "O";
     }
 
-    this.setState({
-      squares: squares,
-      canPlay: false
-    });
+    setSquares(squareCopy);
+    setCanPlay(false);
 
-    if (!getWinner(squares)) {
+    if (!getWinner(squareCopy)) {
       setTimeout(() => {
-        squares[getBestMove(squares)] = "O";
-        if (getWinner(squares)) {
-          this.allowToMakeMove();
+        squareCopy[getBestMove(squareCopy)] = "O";
+        if (getWinner(squareCopy)) {
+          allowToMakeMove(true);
         }
-        this.setState({ squares: squares, canPlay: true });
+        setSquares(squareCopy);
+        allowToMakeMove(true);
       }, 500);
     } else {
-      this.allowToMakeMove();
+      allowToMakeMove(true);
     }
   }
-  allowToMakeMove() {
-    this.setState({ canPlay: true });
+
+  function allowToMakeMove(yesorno) {
+    setCanPlay(yesorno);
   }
-  restartGame() {
-    this.setState({
-      squares: Array(9).fill(null)
-    });
+  function restartGame() {
+    setSquares(Array(9).fill(null));
   }
 
-  render() {
-    let winner = getWinner(this.state.squares);
-    let winningline = lineStyle(this.state.squares);
+  let winner = getWinner(squares);
+  let winningline = lineStyle(squares);
 
-    return (
-      <div className="container">
-        <div id="logo">
-          <img src={logo} alt="" />
-          <h1 id="title">But You Always Loose</h1>
-        </div>
-        <Board
-          squares={this.state.squares}
-          onClick={i => this.clickOnSquare(i)}
-          lineStyle={winningline}
-        />
-        <GameOver winner={winner} onClick={() => this.restartGame()} />
+  return (
+    <div className="container">
+      <div id="logo">
+        <img src={logo} alt="" />
+        <h1 id="title">But You Always Loose</h1>
       </div>
-    );
-  }
+      <Board
+        squares={squares}
+        onClick={i => clickOnSquare(i)}
+        lineStyle={winningline}
+      />
+      <GameOver winner={winner} onClick={() => restartGame()} />
+    </div>
+  );
 }
 
 // ========================================
 
 export default Game;
-// ReactDOM.render(<Game />, document.getElementById("root"));
