@@ -40,8 +40,8 @@ function Game() {
     }
   }
 
-  function allowToMakeMove(yesorno) {
-    setCanPlay(yesorno);
+  function allowToMakeMove(TrueOrFalse) {
+    setCanPlay(TrueOrFalse);
   }
   function restartGame() {
     setSquares(Array(9).fill(null));
@@ -65,7 +65,5 @@ function Game() {
     </div>
   );
 }
-
-// ========================================
 
 export default Game;

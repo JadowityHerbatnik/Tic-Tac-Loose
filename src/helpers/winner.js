@@ -77,16 +77,16 @@ function getLineStyle(squares) {
         break;
     }
 
-    function getLineDirection(start, end) {
-      if (start % 3 === end % 3) {
-        return "vertical";
-      } else if (Math.floor(start / 3) === Math.floor(end / 3)) {
-        return "horizontal";
-      } else {
-        return "diagonal";
-      }
-    }
     return lineStyle;
+  }
+}
+function getLineDirection(start, end) {
+  if (start % 3 === end % 3) {
+    return "vertical";
+  } else if (Math.floor(start / 3) === Math.floor(end / 3)) {
+    return "horizontal";
+  } else {
+    return "diagonal";
   }
 }
 
