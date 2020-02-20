@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles/index.css";
-import logo from "./img/logo.webp";
+import Header from "./components/Header.js";
 import Board from "./components/Board.js";
 import GameOver from "./components/Gameover.js";
 import { getWinner, lineStyle, canComputerWin } from "./helpers/winner.js";
@@ -52,10 +52,7 @@ function Game() {
 
   return (
     <div className="container">
-      <div id="logo">
-        <img src={logo} alt="" />
-        <h1 id="title">But You Always Loose</h1>
-      </div>
+      <Header />
       <Board
         squares={squares}
         onClick={i => clickOnSquare(i)}
