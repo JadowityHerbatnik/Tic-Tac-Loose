@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/index.css";
 import Header from "./components/Header.js";
 import Board from "./components/Board.js";
@@ -9,12 +9,23 @@ import getBestMove from "./helpers/switcher.js";
 function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [canPlay, setCanPlay] = useState(true);
-
+  const [winner, setWinner] = useState(false);
+  useEffect(() => {
+    setWinner(getWinner(squares) ? true : false);
+    if (!getWinner(squares) && !canPlay) {
+      setTimeout(() => {
+        setSquares(previous => {
+          previous[getBestMove(previous)] = "O";
+          return previous;
+        });
+        setCanPlay(true);
+      }, 500);
+    }
+  }, [squares, canPlay]);
   function clickOnSquare(i) {
     const squareCopy = [...squares];
-    const winner = getWinner(squareCopy);
 
-    if (winner || squareCopy[i] || canPlay === false) {
+    if (getWinner(squareCopy) || squareCopy[i] || canPlay === false) {
       return;
     }
     squareCopy[i] = "X";
@@ -25,29 +36,8 @@ function Game() {
 
     setSquares(squareCopy);
     setCanPlay(false);
-
-    if (!getWinner(squareCopy)) {
-      setTimeout(() => {
-        squareCopy[getBestMove(squareCopy)] = "O";
-        if (getWinner(squareCopy)) {
-          allowToMakeMove(true);
-        }
-        setSquares(squareCopy);
-        allowToMakeMove(true);
-      }, 500);
-    } else {
-      allowToMakeMove(true);
-    }
   }
 
-  function allowToMakeMove(TrueOrFalse) {
-    setCanPlay(TrueOrFalse);
-  }
-  function restartGame() {
-    setSquares(Array(9).fill(null));
-  }
-
-  let winner = getWinner(squares);
   let winningline = lineStyle(squares);
 
   return (
@@ -58,7 +48,10 @@ function Game() {
         onClick={i => clickOnSquare(i)}
         lineStyle={winningline}
       />
-      <GameOver winner={winner} onClick={() => restartGame()} />
+      <GameOver
+        winner={winner}
+        resetGame={() => setSquares(Array(9).fill(null))}
+      />
     </div>
   );
 }
