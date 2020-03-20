@@ -45,7 +45,7 @@ function Game() {
       <Header />
       <Board
         squares={squares}
-        onClick={i => clickOnSquare(i)}
+        clickOnSquare={i => clickOnSquare(i)}
         lineStyle={winningline}
       />
       <GameOver

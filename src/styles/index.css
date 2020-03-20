@@ -1,3 +1,11 @@
+@keyframes zoom {
+  from {
+    transform: scale(0.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 @keyframes strikethrough {
   from {
     width: 0;
@@ -177,12 +185,13 @@ img {
   border: none;
   float: left;
 }
-
-.tic {
+.square i {
   opacity: 1;
   color: #d4b357;
   padding: 0;
   text-align: center;
+  display: inline-block;
+  animation: 0.3s both ease zoom;
 }
 
 .game {
@@ -196,15 +205,6 @@ img {
 
 button:focus {
   outline: none;
-}
-
-.X,
-.O {
-  margin: auto;
-  width: min-content;
-  transform: scale(3);
-  opacity: 0.8;
-  transition: 0.3s;
 }
 
 /*# sourceMappingURL=index.css.map */

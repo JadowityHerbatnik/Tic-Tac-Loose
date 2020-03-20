@@ -12,12 +12,12 @@ function Square(props) {
     <button
       className="square"
       style={props.squareStyle}
-      onClick={props.onClick}
+      onClick={props.clickOnSquare}
       aria-label={props.arialabel}
     >
-      <div className={`tic ${props.value}`} style={props.fontSize}>
-        <i className={iconClassName}></i>
-      </div>
+      {iconClassName === "null" ? null : (
+        <i className={iconClassName} style={props.fontSize}></i>
+      )}
     </button>
   );
 }
@@ -27,9 +27,9 @@ class Board extends React.Component {
     return (
       <Square
         value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
+        clickOnSquare={() => this.props.clickOnSquare(i)}
         squareStyle={{ width: squareSize, height: squareSize }}
-        fontSize={{ fontSize: squareSize / 4 }}
+        fontSize={{ fontSize: squareSize / 1.5 }}
         arialabel={`board field no. ${i + 1}`}
       />
     );
