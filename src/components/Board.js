@@ -22,12 +22,12 @@ function Square(props) {
   );
 }
 
-class Board extends React.Component {
-  renderSquare(squareSize, i) {
+const Board = React.forwardRef((props, ref) => {
+  function renderSquare(squareSize, i) {
     return (
       <Square
-        value={this.props.squares[i]}
-        clickOnSquare={() => this.props.clickOnSquare(i)}
+        value={props.squares[i]}
+        clickOnSquare={() => props.clickOnSquare(i)}
         squareStyle={{ width: squareSize, height: squareSize }}
         fontSize={{ fontSize: squareSize / 1.5 }}
         arialabel={`board field no. ${i + 1}`}
@@ -35,42 +35,40 @@ class Board extends React.Component {
     );
   }
 
-  renderBoard({ height, width }) {
+  function renderBoard({ height, width }) {
     let shorterSide = Math.min(height, width);
     let squareSize = shorterSide / 3.4;
     return (
       <div className="board">
         <div className="board-row">
-          {this.renderSquare(squareSize, 0)}
-          {this.renderSquare(squareSize, 1)}
-          {this.renderSquare(squareSize, 2)}
+          {renderSquare(squareSize, 0)}
+          {renderSquare(squareSize, 1)}
+          {renderSquare(squareSize, 2)}
         </div>
         <div className="board-row">
-          {this.renderSquare(squareSize, 3)}
-          {this.renderSquare(squareSize, 4)}
-          {this.renderSquare(squareSize, 5)}
+          {renderSquare(squareSize, 3)}
+          {renderSquare(squareSize, 4)}
+          {renderSquare(squareSize, 5)}
         </div>
         <div className="board-row">
-          {this.renderSquare(squareSize, 6)}
-          {this.renderSquare(squareSize, 7)}
-          {this.renderSquare(squareSize, 8)}
+          {renderSquare(squareSize, 6)}
+          {renderSquare(squareSize, 7)}
+          {renderSquare(squareSize, 8)}
         </div>
         <div className="gridLines"></div>
         <div className="gridLines rotate"></div>
-        <div className="line" style={this.props.lineStyle} />
+        <div className="line" style={props.lineStyle} />
       </div>
     );
   }
 
-  render() {
+  {
     return (
       <SizeMe
         monitorHeight
-        render={({ size }) => (
-          <div className="game">{this.renderBoard(size)}</div>
-        )}
+        render={({ size }) => <div className="game">{renderBoard(size)}</div>}
       />
     );
   }
-}
+});
 export default Board;

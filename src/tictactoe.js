@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles/index.css";
 import Header from "./components/Header.js";
 import Board from "./components/Board.js";
@@ -10,6 +10,7 @@ function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [canPlay, setCanPlay] = useState(true);
   const [winner, setWinner] = useState(false);
+  const boardref = useRef(null);
   useEffect(() => {
     setWinner(getWinner(squares) ? true : false);
     if (!getWinner(squares) && !canPlay) {
@@ -44,6 +45,7 @@ function Game() {
     <div className="container">
       <Header />
       <Board
+        boardref={boardref}
         squares={squares}
         clickOnSquare={i => clickOnSquare(i)}
         lineStyle={winningline}
