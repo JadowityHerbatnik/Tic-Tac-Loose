@@ -10,7 +10,19 @@ function Game() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [canPlay, setCanPlay] = useState(true);
   const [winner, setWinner] = useState(false);
+  const [boardSize, setBoardSize] = useState([0, 0]);
   const boardref = useRef(null);
+  const [vh, setVh] = useState(0);
+  useEffect(() => {
+    function recalculate() {
+      const { width, height } = boardref.current.getBoundingClientRect();
+      setVh(window.innerHeight);
+      setBoardSize([height, width]);
+    }
+    window.addEventListener("resize", recalculate);
+    recalculate();
+    return () => window.removeEventListener("resize", recalculate);
+  }, [vh]);
   useEffect(() => {
     setWinner(getWinner(squares) ? true : false);
     if (!getWinner(squares) && !canPlay) {
@@ -42,13 +54,14 @@ function Game() {
   let winningline = lineStyle(squares);
 
   return (
-    <div className="container">
+    <div className="container" style={{ height: vh }}>
       <Header />
       <Board
         boardref={boardref}
         squares={squares}
         clickOnSquare={i => clickOnSquare(i)}
         lineStyle={winningline}
+        boardSize={boardSize}
       />
       <GameOver
         winner={winner}

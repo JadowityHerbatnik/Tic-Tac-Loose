@@ -1,8 +1,7 @@
 import React from "react";
-import { SizeMe } from "react-sizeme";
 import "../fontello/css/fontello.css";
 
-function Square(props) {
+const Square = props => {
   const iconClassName = `${
     props.value === null
       ? null
@@ -15,15 +14,16 @@ function Square(props) {
       onClick={props.clickOnSquare}
       aria-label={props.arialabel}
     >
-      {iconClassName === "null" ? null : (
-        <i className={iconClassName} style={props.fontSize}></i>
-      )}
+      {props.value && <i className={iconClassName} style={props.fontSize}></i>}
     </button>
   );
-}
+};
 
 const Board = React.forwardRef((props, ref) => {
-  function renderSquare(squareSize, i) {
+  const [height, width] = props.boardSize;
+  const squareSize = Math.min(height, width) / 3.4;
+
+  const renderSquare = i => {
     return (
       <Square
         value={props.squares[i]}
@@ -33,42 +33,31 @@ const Board = React.forwardRef((props, ref) => {
         arialabel={`board field no. ${i + 1}`}
       />
     );
-  }
+  };
+  const generateRows = num =>
+    [...Array(num).keys()].map(index => RenderRow(index * 3));
 
-  function renderBoard({ height, width }) {
-    let shorterSide = Math.min(height, width);
-    let squareSize = shorterSide / 3.4;
-    return (
+  const RenderRow = index => {
+    for (let i = index; i < index + 3; i++) {
+      return (
+        <div key={index} className="board-row">
+          {renderSquare(index)}
+          {renderSquare(index + 1)}
+          {renderSquare(index + 2)}
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div ref={props.boardref} className="game">
       <div className="board">
-        <div className="board-row">
-          {renderSquare(squareSize, 0)}
-          {renderSquare(squareSize, 1)}
-          {renderSquare(squareSize, 2)}
-        </div>
-        <div className="board-row">
-          {renderSquare(squareSize, 3)}
-          {renderSquare(squareSize, 4)}
-          {renderSquare(squareSize, 5)}
-        </div>
-        <div className="board-row">
-          {renderSquare(squareSize, 6)}
-          {renderSquare(squareSize, 7)}
-          {renderSquare(squareSize, 8)}
-        </div>
+        {generateRows(3)}
         <div className="gridLines"></div>
         <div className="gridLines rotate"></div>
         <div className="line" style={props.lineStyle} />
       </div>
-    );
-  }
-
-  {
-    return (
-      <SizeMe
-        monitorHeight
-        render={({ size }) => <div className="game">{renderBoard(size)}</div>}
-      />
-    );
-  }
+    </div>
+  );
 });
 export default Board;
