@@ -65,7 +65,10 @@ function Game() {
       />
       <GameOver
         winner={winner}
-        resetGame={() => setSquares(Array(9).fill(null))}
+        resetGame={() => {
+          setCanPlay(true);
+          setSquares(Array(9).fill(null));
+        }}
       />
     </div>
   );
