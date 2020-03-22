@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../fontello/css/fontello.css";
+import "../styles/fontello/css/fontello.css";
 
 const GameOver = ({ winner, resetGame }) => {
   const [shouldRender, setRender] = useState(winner);
