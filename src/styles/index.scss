@@ -1,5 +1,10 @@
 $boardBackground: #362f1b;
 $ticColor: #d4b357;
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 @keyframes zoom {
   from {
     transform: scale(0);
@@ -169,12 +174,18 @@ img {
   border-radius: 0px;
   border: none;
   float: left;
-  i {
-    color: $ticColor;
-    padding: 0;
-    text-align: center;
-    display: inline-block;
-    animation: 0.5s ease forwards zoom;
+  .xline {
+    stroke-linecap: round;
+    stroke: $ticColor;
+    animation: 0.25s ease forwards draw;
+  }
+  #rotated {
+    animation: 0.25s 0.25s ease forwards draw;
+  }
+  .circle {
+    stroke: $ticColor;
+    fill: transparent;
+    animation: 0.5s ease forwards draw;
   }
 }
 .game {

@@ -1,3 +1,8 @@
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 @keyframes zoom {
   from {
     transform: scale(0);
@@ -179,12 +184,18 @@ img {
   border: none;
   float: left;
 }
-.square i {
-  color: #d4b357;
-  padding: 0;
-  text-align: center;
-  display: inline-block;
-  animation: 0.5s ease forwards zoom;
+.square .xline {
+  stroke-linecap: round;
+  stroke: #d4b357;
+  animation: 0.25s ease forwards draw;
+}
+.square #rotated {
+  animation: 0.25s 0.25s ease forwards draw;
+}
+.square .circle {
+  stroke: #d4b357;
+  fill: transparent;
+  animation: 0.5s ease forwards draw;
 }
 
 .game {
