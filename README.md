@@ -4,5 +4,5 @@ After seeing many people trying to build an unbeatable AI for their TicTacToe, I
 
 ### You Play You Loose
 
-The game is available on IPFS network under hash `QmXULUsFmNxCn46U1CUDFB61tFVaowWRSEwsrGcV1xETkL` or if you don't use IPFS - under this [HTTP Gateway](https://gateway.pinata.cloud/ipfs/QmXULUsFmNxCn46U1CUDFB61tFVaowWRSEwsrGcV1xETkL/)
+The game is available on IPFS network under hash `QmbNXM9Q7gYcmBpFZLKTiScJEMnxRtHnnyYSNN9uYh9e31` or if you don't use IPFS - under this [HTTP Gateway](https://gateway.pinata.cloud/ipfs/QmbNXM9Q7gYcmBpFZLKTiScJEMnxRtHnnyYSNN9uYh9e31/)
 
