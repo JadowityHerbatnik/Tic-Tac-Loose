@@ -193,9 +193,10 @@ img {
   animation: 0.25s 0.25s ease forwards draw;
 }
 .square .circle {
+  stroke-linecap: round;
   stroke: #d4b357;
   fill: transparent;
-  animation: 0.5s ease forwards draw;
+  animation: 0.7s ease forwards draw;
 }
 
 .game {

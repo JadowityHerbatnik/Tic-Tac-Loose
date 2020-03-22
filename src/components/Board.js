@@ -2,16 +2,17 @@ import React from "react";
 
 const O_tic = props => {
   return (
-    <svg width={props.svgSize} height={props.svgSize}>
+    <svg width={props.circleSize} height={props.circleSize}>
       <circle
         className="circle"
-        cx={props.svgSize / 2}
-        cy={props.svgSize / 2}
-        strokeWidth={props.svgSize / 13}
-        strokeDasharray={(props.svgSize / 4) * 6.28}
-        strokeDashoffset={(props.svgSize / 4) * 6.28}
-        r={props.svgSize / 4}
-        transform={`rotate(-90, ${props.svgSize / 2}, ${props.svgSize / 2})`}
+        cx={props.circleSize / 2}
+        cy={props.circleSize / 2}
+        strokeWidth={props.circleSize / 13}
+        strokeDasharray={(props.circleSize / 4) * 6.28}
+        strokeDashoffset={(props.circleSize / 4) * 6.28}
+        r={props.circleSize / 4}
+        transform={`rotate(-90, ${props.circleSize / 2}, ${props.circleSize /
+          2})`}
       />
     </svg>
   );
@@ -66,7 +67,7 @@ const Board = React.forwardRef((props, ref) => {
         value={props.squares[i]}
         clickOnSquare={() => props.clickOnSquare(i)}
         squareSize={squareSize}
-        svgSize={squareSize / 1.2}
+        circleSize={squareSize / 1.2}
         xSize={squareSize / 2}
         arialabel={`board field no. ${i + 1}`}
       />
