@@ -1,7 +1,8 @@
 $boardBackground: #362f1b;
 $gridLineBorder: 1vh;
-$ticColor: #d4b357;
-$defaultColor: #e0d7ba;
+$yellow: #d4b357;
+// $defaultColor: #e0d7ba;
+$defaultColor: #ccc19d;
 @keyframes drawlines {
   from {
     height: 0;
@@ -78,8 +79,9 @@ body {
   backdrop-filter: blur(10px);
   p {
     font-size: 7em;
-    text-shadow: 0px 0px 25px rgba(248, 255, 232, 1);
-    color: $ticColor;
+    opacity: 0.8;
+    text-shadow: 0px 0px 25px $defaultColor;
+    color: $defaultColor;
     span {
       position: relative;
       &::after {
@@ -137,7 +139,7 @@ img {
   margin: 5vh 0 5vh 0;
 }
 .gridLine {
-  opacity: 0.6;
+  opacity: 0.8;
   position: absolute;
   height: 100%;
   width: $gridLineBorder;
@@ -183,7 +185,6 @@ img {
 .board {
   position: relative;
   border: none;
-  // flex: 0 0 auto;
   max-height: 100%;
 }
 
@@ -202,7 +203,7 @@ img {
   float: left;
   .xline {
     stroke-linecap: round;
-    stroke: $ticColor;
+    stroke: $yellow;
     animation: 0.25s ease forwards draw;
   }
   #rotated {
@@ -210,7 +211,7 @@ img {
   }
   .circle {
     stroke-linecap: round;
-    stroke: $ticColor;
+    stroke: $yellow;
     fill: transparent;
     animation: 0.7s ease forwards draw;
   }
