@@ -9,7 +9,7 @@ const O_tic = props => {
         cy={props.circleSize / 2}
         strokeWidth={props.circleSize / 13}
         strokeDasharray={(props.circleSize / 4) * 6.28}
-        strokeDashoffset={(props.circleSize / 4) * 6.28}
+        strokeDashoffset={(props.circleSize / -4) * 6.28}
         r={props.circleSize / 4}
         transform={`rotate(-90, ${props.circleSize / 2}, ${props.circleSize /
           2})`}
