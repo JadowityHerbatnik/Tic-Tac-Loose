@@ -90,8 +90,10 @@ const Board = React.forwardRef((props, ref) => {
     <div ref={props.boardref} className="game">
       <div className="board">
         {[...Array(3).keys()].map(index => RenderRow(index * 3))}
-        <div className="gridLines"></div>
-        <div className="gridLines rotate"></div>
+        <div className="gridLine" id="id1"></div>
+        <div className="gridLine" id="id2"></div>
+        <div className="gridLine" id="id3"></div>
+        <div className="gridLine" id="id4"></div>
         <div className="line" style={props.lineStyle} />
       </div>
     </div>

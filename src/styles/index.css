@@ -1,3 +1,8 @@
+@keyframes drawlines {
+  from {
+    height: 0;
+  }
+}
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
@@ -75,6 +80,7 @@ body {
 #gameOver p {
   font-size: 7em;
   text-shadow: 0px 0px 25px #f8ffe8;
+  color: #d4b357;
 }
 #gameOver p span {
   position: relative;
@@ -136,21 +142,38 @@ img {
   margin: 5vh 0 5vh 0;
 }
 
-.gridLines {
+.gridLine {
   opacity: 0.6;
   position: absolute;
-  left: calc(100% / 3);
-  top: 0;
   height: 100%;
-  width: calc(100% / 3);
-  border-width: 0px 1vh 0px 1vh;
-  border-style: solid;
-  border-color: #e0d7ba;
+  width: 1vh;
+  border-radius: 10px;
   pointer-events: none;
+  background-color: #e0d7ba;
+  animation: 1s both drawlines;
 }
-
-.rotate {
-  transform: rotate(90deg);
+.gridLine#id1 {
+  top: 0;
+  left: calc(100% / 3);
+}
+.gridLine#id2 {
+  top: 0;
+  left: calc(100% / 3 * 2);
+  animation-delay: 0.3s;
+}
+.gridLine#id3 {
+  top: calc(100% / 3);
+  left: 0;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  animation-delay: 0.6s;
+}
+.gridLine#id4 {
+  top: calc(100% / 3 * 2);
+  left: 0;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  animation-delay: 0.9s;
 }
 
 .line {
@@ -166,7 +189,6 @@ img {
 .board {
   position: relative;
   border: none;
-  flex: 0 0 auto;
   max-height: 100%;
 }
 
