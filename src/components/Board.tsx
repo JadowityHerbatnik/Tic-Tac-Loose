@@ -1,6 +1,11 @@
 import React from "react";
-
-const O_tic = (props) => {
+interface CircleSvg {
+  circleSize: number;
+}
+interface XSvg {
+  xSize: number;
+}
+const O_tic = (props: CircleSvg) => {
   return (
     <svg width={props.circleSize} height={props.circleSize}>
       <circle
@@ -18,7 +23,7 @@ const O_tic = (props) => {
     </svg>
   );
 };
-const Line = (props, rotated) => {
+const Line = (props: XSvg, rotated: boolean) => {
   return (
     <line
       className="xline"
@@ -36,7 +41,7 @@ const Line = (props, rotated) => {
     />
   );
 };
-const X_tic = (props) => {
+const X_tic = (props: XSvg) => {
   return (
     <svg width={props.xSize} height={props.xSize}>
       {Line(props, false)}
@@ -44,7 +49,17 @@ const X_tic = (props) => {
     </svg>
   );
 };
-const Square = (props) => {
+interface Square {
+  value: string | null;
+  squareSize: number;
+  arialabel: string;
+  xSize: number;
+  circleSize: number;
+  clickOnSquare: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+}
+const Square = (props: Square) => {
   const active = props.value;
   return (
     <button
@@ -59,9 +74,9 @@ const Square = (props) => {
   );
 };
 interface BoardProps {
-  boardref: any;
-  squares: string[];
-  clickOnSquare: (i) => void;
+  boardRef: any;
+  squares: Array<string | null>;
+  clickOnSquare: (i: number) => void;
   lineStyle: {} | undefined;
   boardSize: number[];
 }
@@ -71,7 +86,7 @@ const Board: React.FC<BoardProps> = React.forwardRef(
     const [height, width] = props.boardSize;
     const squareSize = Math.min(height, width) / 3.4;
 
-    const renderSquare = (i) => {
+    const renderSquare = (i: number) => {
       return (
         <Square
           value={props.squares[i]}
@@ -84,7 +99,7 @@ const Board: React.FC<BoardProps> = React.forwardRef(
       );
     };
 
-    const RenderRow = (index) => {
+    const RenderRow = (index: number) => {
       for (let i = index; i < index + 3; i++) {
         return (
           <div key={index} className="board-row">
@@ -97,7 +112,7 @@ const Board: React.FC<BoardProps> = React.forwardRef(
     };
 
     return (
-      <div ref={props.boardref} className="game">
+      <div ref={props.boardRef} className="game">
         <div className="board">
           {[...Array(3).keys()].map((index) => RenderRow(index * 3))}
           <div className="gridLine" id="id1"></div>
