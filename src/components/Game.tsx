@@ -1,23 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/index.css";
-import Header from "./Header.js";
-import Board from "./Board.js";
-import GameOver from "./Gameover.js";
-import { getWinner, lineStyle, canComputerWin } from "../helpers/winner.js";
-import getBestMove from "../helpers/switcher.js";
+import Header from "./Header";
+import Board from "./Board";
+import GameOver from "./Gameover";
+import { getWinner, lineStyle, canComputerWin } from "../helpers/winner";
+import getBestMove from "../helpers/switcher";
 
 const Game = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [canPlay, setCanPlay] = useState(true);
   const [winner, setWinner] = useState(false);
   const [boardSize, setBoardSize] = useState([0, 0]);
-  const boardref = useRef(null);
+  const boardref = useRef<HTMLDivElement>(null);
   const [vh, setVh] = useState(0);
   useEffect(() => {
     const recalculate = () => {
-      const { width, height } = boardref.current.getBoundingClientRect();
+      const boardNode = boardref.current;
+      if (boardNode) {
+        const { width, height } = boardNode.getBoundingClientRect();
+        setBoardSize([height, width]);
+      }
       setVh(window.innerHeight);
-      setBoardSize([height, width]);
     };
     window.addEventListener("resize", recalculate);
     recalculate();
@@ -27,7 +30,7 @@ const Game = () => {
     setWinner(getWinner(squares) ? true : false);
     if (!getWinner(squares) && !canPlay) {
       setTimeout(() => {
-        setSquares(previous => {
+        setSquares((previous) => {
           previous[getBestMove(previous)] = "O";
           return previous;
         });
@@ -59,7 +62,7 @@ const Game = () => {
       <Board
         boardref={boardref}
         squares={squares}
-        clickOnSquare={i => clickOnSquare(i)}
+        clickOnSquare={(i) => clickOnSquare(i)}
         lineStyle={winningline}
         boardSize={boardSize}
       />

@@ -3,7 +3,7 @@ import "../styles/fontello/css/fontello.css";
 
 const GameOver = ({ winner, resetGame }) => {
   const [shouldRender, setRender] = useState(winner);
-  const [style, setStyle] = useState({ opacity: "0" });
+  const [style, setStyle] = useState<{}>({ opacity: "0" });
 
   useEffect(() => {
     if (winner) {

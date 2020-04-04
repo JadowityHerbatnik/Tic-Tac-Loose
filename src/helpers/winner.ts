@@ -7,7 +7,7 @@ function getLines() {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
 }
 
@@ -34,9 +34,16 @@ function isWinPossible(squares) {
 }
 
 function getLineStyle(squares) {
+  interface lineStyle {
+    top?: string;
+    left?: string;
+    width?: string;
+    height?: string;
+    transform?: string;
+  }
   let winnerSquares = calculateWinner(squares);
   if (winnerSquares != null) {
-    const lineStyle = {};
+    const lineStyle: lineStyle = {};
     const start = winnerSquares[0];
     const end = winnerSquares[1];
     const thickness = "4%";
