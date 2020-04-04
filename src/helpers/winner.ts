@@ -7,11 +7,11 @@ function getLines() {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
 }
-
-function calculateWinner(squares) {
+type Square = (string | null)[];
+const calculateWinner = (squares: Square) => {
   const lines = getLines();
   const len = lines.length;
   for (let i = 0; i < len; i++) {
@@ -20,8 +20,8 @@ function calculateWinner(squares) {
       return [a, c];
     }
   }
-}
-function isWinPossible(squares) {
+};
+function isWinPossible(squares: Square) {
   const lines = getLines();
   const len = lines.length;
   for (let i = 0; i < len; i++) {
@@ -33,10 +33,17 @@ function isWinPossible(squares) {
   return false;
 }
 
-function getLineStyle(squares) {
+function getLineStyle(squares: Square) {
+  interface lineStyle {
+    top?: string;
+    left?: string;
+    width?: string;
+    height?: string;
+    transform?: string;
+  }
   let winnerSquares = calculateWinner(squares);
   if (winnerSquares != null) {
-    const lineStyle = {};
+    const lineStyle: lineStyle = {};
     const start = winnerSquares[0];
     const end = winnerSquares[1];
     const thickness = "4%";
@@ -80,7 +87,7 @@ function getLineStyle(squares) {
     return lineStyle;
   }
 }
-function getLineDirection(start, end) {
+function getLineDirection(start: number, end: number) {
   if (start % 3 === end % 3) {
     return "vertical";
   } else if (Math.floor(start / 3) === Math.floor(end / 3)) {
