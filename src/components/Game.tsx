@@ -63,7 +63,7 @@ const Game: React.FC = () => {
     <div className="container" style={{ height: innerHeight }}>
       <Header />
       <Board
-        boardRef={boardRef}
+        ref={boardRef}
         squares={squares}
         clickOnSquare={(i) => clickOnSquare(i)}
         lineStyle={winningline}

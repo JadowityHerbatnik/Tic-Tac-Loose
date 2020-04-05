@@ -1,51 +1,42 @@
-import React from "react";
-interface CircleSvg {
-  circleSize: number;
-}
-interface XSvg {
-  xSize: number;
-}
-const O_tic = (props: CircleSvg) => {
+import React, { forwardRef } from "react";
+
+const O_tic = (circleSize: number) => {
   return (
-    <svg width={props.circleSize} height={props.circleSize}>
+    <svg width={circleSize} height={circleSize}>
       <circle
         className="circle"
-        cx={props.circleSize / 2}
-        cy={props.circleSize / 2}
-        strokeWidth={props.circleSize / 13}
-        strokeDasharray={(props.circleSize / 4) * 6.28}
-        strokeDashoffset={(props.circleSize / -4) * 6.28}
-        r={props.circleSize / 4}
-        transform={`rotate(-90, ${props.circleSize / 2}, ${
-          props.circleSize / 2
-        })`}
+        cx={circleSize / 2}
+        cy={circleSize / 2}
+        strokeWidth={circleSize / 13}
+        strokeDasharray={(circleSize / 4) * 6.28}
+        strokeDashoffset={(circleSize / -4) * 6.28}
+        r={circleSize / 4}
+        transform={`rotate(-90, ${circleSize / 2}, ${circleSize / 2})`}
       />
     </svg>
   );
 };
-const Line = (props: XSvg, rotated: boolean) => {
+const Line = (xSize: number, rotated: boolean) => {
   return (
     <line
       className="xline"
       id={rotated ? "rotated" : ""}
       x1="0"
-      y1={props.xSize / 2}
-      x2={props.xSize}
-      y2={props.xSize / 2}
-      strokeWidth={props.xSize / 8}
-      strokeDasharray={props.xSize}
-      strokeDashoffset={props.xSize}
-      transform={`rotate(${rotated ? 135 : 45}, ${props.xSize / 2}, ${
-        props.xSize / 2
-      }) `}
+      y1={xSize / 2}
+      x2={xSize}
+      y2={xSize / 2}
+      strokeWidth={xSize / 8}
+      strokeDasharray={xSize}
+      strokeDashoffset={xSize}
+      transform={`rotate(${rotated ? 135 : 45}, ${xSize / 2}, ${xSize / 2}) `}
     />
   );
 };
-const X_tic = (props: XSvg) => {
+const X_tic = (xSize: number) => {
   return (
-    <svg width={props.xSize} height={props.xSize}>
-      {Line(props, false)}
-      {Line(props, true)}
+    <svg width={xSize} height={xSize}>
+      {Line(xSize, false)}
+      {Line(xSize, true)}
     </svg>
   );
 };
@@ -68,21 +59,19 @@ const Square = (props: Square) => {
       onClick={props.clickOnSquare}
       aria-label={props.arialabel}
     >
-      {active === "X" && X_tic(props)}
-      {active === "O" && O_tic(props)}
+      {active === "X" && X_tic(props.xSize)}
+      {active === "O" && O_tic(props.circleSize)}
     </button>
   );
 };
 interface BoardProps {
-  boardRef: any;
   squares: Array<string | null>;
   clickOnSquare: (i: number) => void;
   lineStyle: {} | undefined;
   boardSize: number[];
 }
-type Ref = HTMLDivElement | null;
-const Board: React.FC<BoardProps> = React.forwardRef(
-  (props: BoardProps, ref) => {
+const Board = forwardRef(
+  (props: BoardProps, ref: React.Ref<HTMLDivElement>) => {
     const [height, width] = props.boardSize;
     const squareSize = Math.min(height, width) / 3.4;
 
@@ -112,14 +101,14 @@ const Board: React.FC<BoardProps> = React.forwardRef(
     };
 
     return (
-      <div ref={props.boardRef} className="game">
-        <div className="board">
+      <div ref={ref} id="game">
+        <div id="board">
           {[...Array(3).keys()].map((index) => RenderRow(index * 3))}
           <div className="gridLine" id="id1"></div>
           <div className="gridLine" id="id2"></div>
           <div className="gridLine" id="id3"></div>
           <div className="gridLine" id="id4"></div>
-          <div className="line" style={props.lineStyle} />
+          <div id="winningline" style={props.lineStyle} />
         </div>
       </div>
     );

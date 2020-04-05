@@ -27,7 +27,7 @@ const GameOver: React.FC<Props> = ({ winner, resetGame }) => {
         You
         <br />L<span>ooo</span>se
       </p>
-      <button id="resetButton" className="but" onClick={() => resetGame()}>
+      <button id="resetButton" className="btn" onClick={() => resetGame()}>
         <i className="icon-ccw"></i>
         Try Again
       </button>
