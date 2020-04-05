@@ -25,18 +25,18 @@
   }
 }
 @keyframes fadein {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
 @keyframes fadeout {
-  0% {
+  from {
     opacity: 1;
   }
-  100% {
+  to {
     opacity: 0;
   }
 }
@@ -46,12 +46,6 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
 body {
   background-color: #452e00;
   background-image: url("../img/black-linen.webp");
@@ -59,6 +53,115 @@ body {
   color: #ccc19d;
   text-align: center;
   margin: auto;
+}
+
+button:focus {
+  outline: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#game {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  flex: 0 0 auto;
+  height: 7vh;
+  margin: 0 2vw 0 2vw;
+}
+
+#title {
+  font-size: 7vh;
+  margin: 0;
+}
+
+#logo {
+  display: flex;
+  padding: 0 4vw 0 4vw;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5vh 0 5vh 0;
+}
+
+#board {
+  position: relative;
+  border: none;
+  max-height: 100%;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.gridLine {
+  opacity: 0.8;
+  position: absolute;
+  height: 100%;
+  width: 1vh;
+  border-radius: 10px;
+  pointer-events: none;
+  background-color: #ccc19d;
+  animation: 1s both drawlines;
+}
+.gridLine#id1 {
+  top: 0;
+  left: calc(100% / 3);
+}
+.gridLine#id2 {
+  top: 0;
+  left: calc(100% / 3 * 2);
+  animation-delay: 0.3s;
+}
+.gridLine#id3 {
+  top: calc(100% / 3);
+  left: 0;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  animation-delay: 0.6s;
+}
+.gridLine#id4 {
+  top: calc(100% / 3 * 2);
+  left: 0;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  animation-delay: 0.9s;
+}
+
+.square {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  border-radius: 0px;
+  border: none;
+  float: left;
+}
+.square .xline {
+  stroke-linecap: round;
+  stroke: #d4b357;
+  animation: 0.25s ease forwards draw;
+}
+.square .xline#rotated {
+  animation: 0.25s 0.25s ease forwards draw;
+}
+.square .circle {
+  stroke-linecap: round;
+  stroke: #d4b357;
+  fill: transparent;
+  animation: 0.7s ease forwards draw;
 }
 
 #gameOver {
@@ -99,7 +202,17 @@ body {
   top: 55%;
 }
 
-.but {
+#winningline {
+  opacity: 0.9;
+  position: absolute;
+  width: 0;
+  border-radius: 10px;
+  transform-origin: left;
+  background-color: #c00;
+  transition: width 1s 1s;
+}
+
+.btn {
   cursor: pointer;
   background: #d4b357;
   color: #544418;
@@ -111,128 +224,9 @@ body {
   font-size: 8vh;
 }
 @media (hover: hover) and (pointer: fine) {
-  .but:hover {
+  .btn:hover {
     background: #917524;
   }
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-img {
-  flex: 0 0 auto;
-  height: 7vh;
-  margin: 0 2vw 0 2vw;
-}
-
-#title {
-  font-size: 7vh;
-  margin: 0;
-}
-
-#logo {
-  display: flex;
-  padding: 0 4vw 0 4vw;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 5vh 0 5vh 0;
-}
-
-.gridLine {
-  opacity: 0.8;
-  position: absolute;
-  height: 100%;
-  width: 1vh;
-  border-radius: 10px;
-  pointer-events: none;
-  background-color: #ccc19d;
-  animation: 1s both drawlines;
-}
-.gridLine#id1 {
-  top: 0;
-  left: calc(100% / 3);
-}
-.gridLine#id2 {
-  top: 0;
-  left: calc(100% / 3 * 2);
-  animation-delay: 0.3s;
-}
-.gridLine#id3 {
-  top: calc(100% / 3);
-  left: 0;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  animation-delay: 0.6s;
-}
-.gridLine#id4 {
-  top: calc(100% / 3 * 2);
-  left: 0;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  animation-delay: 0.9s;
-}
-
-.line {
-  opacity: 0.9;
-  position: absolute;
-  width: 0;
-  border-radius: 10px;
-  transform-origin: left;
-  background-color: #c00;
-  transition: width 1s 1s;
-}
-
-.board {
-  position: relative;
-  border: none;
-  max-height: 100%;
-}
-
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.square {
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0);
-  padding: 0;
-  border-radius: 0px;
-  border: none;
-  float: left;
-}
-.square .xline {
-  stroke-linecap: round;
-  stroke: #d4b357;
-  animation: 0.25s ease forwards draw;
-}
-.square #rotated {
-  animation: 0.25s 0.25s ease forwards draw;
-}
-.square .circle {
-  stroke-linecap: round;
-  stroke: #d4b357;
-  fill: transparent;
-  animation: 0.7s ease forwards draw;
-}
-
-.game {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-button:focus {
-  outline: none;
 }
 
 /*# sourceMappingURL=index.css.map */

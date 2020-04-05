@@ -1,0 +1,22 @@
+.square {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  border-radius: 0px;
+  border: none;
+  float: left;
+  .xline {
+    stroke-linecap: round;
+    stroke: $yellow;
+    animation: 0.25s ease forwards draw;
+    &#rotated {
+      animation: 0.25s 0.25s ease forwards draw;
+    }
+  }
+  .circle {
+    stroke-linecap: round;
+    stroke: $yellow;
+    fill: transparent;
+    animation: 0.7s ease forwards draw;
+  }
+}

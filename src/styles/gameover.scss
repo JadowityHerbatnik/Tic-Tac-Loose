@@ -1,0 +1,61 @@
+#gameOver {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  @supports (not (backdrop-filter: blur())) {
+    background-color: rgba(51, 28, 4, 0.95);
+  }
+  backdrop-filter: blur(10px);
+  p {
+    font-size: 7em;
+    opacity: 0.8;
+    text-shadow: 0px 0px 25px $defaultColor;
+    color: $defaultColor;
+    span {
+      position: relative;
+      &::after {
+        animation: 1s ease both 2.5s strikethrough;
+        display: block;
+        content: "";
+        height: 10%;
+        border-radius: 10px;
+        opacity: 0.9;
+        background-color: red;
+        position: absolute;
+        left: -5%;
+        top: 55%;
+      }
+    }
+  }
+}
+#winningline {
+  opacity: 0.9;
+  position: absolute;
+  width: 0;
+  border-radius: 10px;
+  transform-origin: left;
+  background-color: #c00;
+  transition: width 1s 1s;
+  //Yeah, transform and scaleX is faster, but I'll have to figure out how to animate rotation and scale separately without knowing the rotation angle beforehand + it's going to be defined by React on the element in html which obv overrides css
+}
+.btn {
+  cursor: pointer;
+  background: #d4b357;
+  color: #544418;
+  max-width: 80vw;
+  border: none;
+  padding: 1vh;
+  border-radius: 10px;
+  transition: 0.3s;
+  font-size: 8vh;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: #917524;
+    }
+  }
+}

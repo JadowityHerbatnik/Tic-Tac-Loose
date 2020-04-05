@@ -1,0 +1,18 @@
+img {
+  flex: 0 0 auto;
+  height: 7vh;
+  margin: 0 2vw 0 2vw;
+}
+#title {
+  font-size: 7vh;
+  margin: 0;
+}
+#logo {
+  display: flex;
+  padding: 0 4vw 0 4vw;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5vh 0 5vh 0;
+}
