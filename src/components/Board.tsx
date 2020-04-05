@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import { Square } from "./Square";
-import { range } from "lodash";
 
 interface BoardProps {
   squares: Squares;
@@ -38,14 +37,14 @@ const Board = forwardRef(
       }
     };
     const RenderGridLines = (number: number) =>
-      range(number).map((index) => (
+      [...Array(number).keys()].map((index) => (
         <div key={index} className="gridLine" id={`id${index}`} />
       ));
 
     return (
       <div ref={ref} id="game">
         <div id="board">
-          {range(3).map((index) => RenderRow(index * 3))}
+          {[...Array(3).keys()].map((index) => RenderRow(index * 3))}
           {RenderGridLines(4)}
           <div id="winningline" style={props.lineStyle} />
         </div>
