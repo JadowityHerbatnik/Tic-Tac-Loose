@@ -7,7 +7,7 @@ import "../styles/index.css";
 import { getWinner, lineStyle, canComputerWin } from "../helpers/winner";
 import getBestMove from "../helpers/switcher";
 const Game: React.FC = () => {
-  const [squares, setSquares] = useState<Array<string | null>>(
+  const [squares, setSquares] = useState<Array<"X" | "O" | null>>(
     Array(9).fill(null)
   );
   const [canPlay, setCanPlay] = useState(true);
