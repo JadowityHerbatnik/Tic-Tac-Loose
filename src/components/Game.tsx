@@ -4,13 +4,16 @@ import Header from "./Header";
 import Board from "./Board";
 import GameOver from "./Gameover";
 import "../styles/index.css";
-import { getWinner, lineStyle, canComputerWin } from "../helpers/winner";
+import {
+  getWinningSquares,
+  lineStyle,
+  canComputerWin,
+} from "../helpers/winner";
 import getBestMove from "../helpers/switcher";
+
 const Game: React.FC = () => {
-  const [squares, setSquares] = useState<Array<"X" | "O" | null>>(
-    Array(9).fill(null)
-  );
-  const [canPlay, setCanPlay] = useState(true);
+  const [squares, setSquares] = useState<Squares>(Array(9).fill(null));
+  const [playerTurn, setPlayerTurn] = useState(true);
   const [winner, setWinner] = useState(false);
   const [boardSize, setBoardSize] = useState([0, 0]);
   const boardRef = useRef<HTMLDivElement>(null);
@@ -30,35 +33,36 @@ const Game: React.FC = () => {
   }, [innerHeight]);
 
   useEffect(() => {
-    setWinner(getWinner(squares) ? true : false);
-    if (!getWinner(squares) && !canPlay) {
+    setWinner(getWinningSquares(squares) ? true : false);
+    if (!getWinningSquares(squares) && !playerTurn) {
       setTimeout(() => {
         setSquares((previous) => {
           previous[getBestMove(previous)] = "O";
           return previous;
         });
-        setCanPlay(true);
+        setPlayerTurn(true);
       }, 500);
     }
-  }, [squares, canPlay]);
-  function clickOnSquare(i: number) {
-    const squareCopy = [...squares];
+  }, [squares, playerTurn]);
+  const clickOnSquare = (i: number) => {
+    const squaresCopy = [...squares];
 
-    if (getWinner(squareCopy) || squareCopy[i] || canPlay === false) {
+    if (
+      getWinningSquares(squaresCopy) ||
+      squaresCopy[i] ||
+      playerTurn === false
+    ) {
       return;
     }
-    squareCopy[i] = "X";
+    squaresCopy[i] = "X";
 
-    if (!canComputerWin(squareCopy)) {
-      squareCopy[i] = "O";
+    if (!canComputerWin(squaresCopy)) {
+      squaresCopy[i] = "O";
     }
 
-    setSquares(squareCopy);
-    setCanPlay(false);
-  }
-
-  let winningline = lineStyle(squares);
-
+    setSquares(squaresCopy);
+    setPlayerTurn(false);
+  };
   return (
     <div className="container" style={{ height: innerHeight }}>
       <Header />
@@ -66,13 +70,13 @@ const Game: React.FC = () => {
         ref={boardRef}
         squares={squares}
         clickOnSquare={(i) => clickOnSquare(i)}
-        lineStyle={winningline}
+        lineStyle={lineStyle(squares)}
         boardSize={boardSize}
       />
       <GameOver
         winner={winner}
         resetGame={() => {
-          setCanPlay(true);
+          setPlayerTurn(true);
           setSquares(Array(9).fill(null));
         }}
       />

@@ -117,23 +117,23 @@ img {
   background-color: #ccc19d;
   animation: 1s both drawlines;
 }
-.gridLine#id1 {
+.gridLine#id0 {
   top: 0;
   left: calc(100% / 3);
 }
-.gridLine#id2 {
+.gridLine#id1 {
   top: 0;
   left: calc(100% / 3 * 2);
   animation-delay: 0.3s;
 }
-.gridLine#id3 {
+.gridLine#id2 {
   top: calc(100% / 3);
   left: 0;
   transform: rotate(-90deg);
   transform-origin: top left;
   animation-delay: 0.6s;
 }
-.gridLine#id4 {
+.gridLine#id3 {
   top: calc(100% / 3 * 2);
   left: 0;
   transform: rotate(-90deg);

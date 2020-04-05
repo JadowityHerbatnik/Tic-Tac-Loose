@@ -10,21 +10,18 @@ function getLines() {
     [2, 4, 6],
   ];
 }
-type Square = (string | null)[];
-const calculateWinner = (squares: Square) => {
+export function getWinningSquares(squares: Squares) {
   const lines = getLines();
-  const len = lines.length;
-  for (let i = 0; i < len; i++) {
+  for (let i = 0, len = lines.length; i < len; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return [a, c];
     }
   }
-};
-function isWinPossible(squares: Square) {
+}
+export function canComputerWin(squares: Squares) {
   const lines = getLines();
-  const len = lines.length;
-  for (let i = 0; i < len; i++) {
+  for (let i = 0, len = lines.length; i < len; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] !== "X" && squares[b] !== "X" && squares[c] !== "X") {
       return true;
@@ -33,16 +30,9 @@ function isWinPossible(squares: Square) {
   return false;
 }
 
-function getLineStyle(squares: Square) {
-  interface lineStyle {
-    top?: string;
-    left?: string;
-    width?: string;
-    height?: string;
-    transform?: string;
-  }
-  let winnerSquares = calculateWinner(squares);
-  if (winnerSquares != null) {
+export function lineStyle(squares: Squares) {
+  let winnerSquares = getWinningSquares(squares);
+  if (winnerSquares) {
     const lineStyle: lineStyle = {};
     const start = winnerSquares[0];
     const end = winnerSquares[1];
@@ -96,7 +86,3 @@ function getLineDirection(start: number, end: number) {
     return "diagonal";
   }
 }
-
-export const getWinner = calculateWinner;
-export const lineStyle = getLineStyle;
-export const canComputerWin = isWinPossible;

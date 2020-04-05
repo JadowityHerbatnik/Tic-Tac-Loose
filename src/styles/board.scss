@@ -18,23 +18,23 @@
   pointer-events: none;
   background-color: $defaultColor;
   animation: 1s both drawlines;
-  &#id1 {
+  &#id0 {
     top: 0;
     left: calc(100% / 3);
   }
-  &#id2 {
+  &#id1 {
     top: 0;
     left: calc(100% / 3 * 2);
     animation-delay: 0.3s;
   }
-  &#id3 {
+  &#id2 {
     top: calc(100% / 3);
     left: 0;
     transform: rotate(-90deg);
     transform-origin: top left;
     animation-delay: 0.6s;
   }
-  &#id4 {
+  &#id3 {
     top: calc(100% / 3 * 2);
     left: 0;
     transform: rotate(-90deg);

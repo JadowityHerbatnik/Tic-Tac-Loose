@@ -1,34 +1,11 @@
 import React, { forwardRef } from "react";
-import { X_tic, O_tic } from "./Svg";
+import { Square } from "./Square";
+import { range } from "lodash";
 
-interface Square {
-  value: "X" | "O" | null;
-  squareSize: number;
-  arialabel: string;
-  xSize: number;
-  circleSize: number;
-  clickOnSquare: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
-}
-const Square = (props: Square) => {
-  const active = props.value;
-  return (
-    <button
-      className="square"
-      style={{ width: props.squareSize, height: props.squareSize }}
-      onClick={props.clickOnSquare}
-      aria-label={props.arialabel}
-    >
-      {active === "X" && X_tic(props.xSize)}
-      {active === "O" && O_tic(props.circleSize)}
-    </button>
-  );
-};
 interface BoardProps {
-  squares: Array<"X" | "O" | null>;
+  squares: Squares;
   clickOnSquare: (i: number) => void;
-  lineStyle: {} | undefined;
+  lineStyle: lineStyle;
   boardSize: number[];
 }
 const Board = forwardRef(
@@ -60,15 +37,16 @@ const Board = forwardRef(
         );
       }
     };
+    const RenderGridLines = (number: number) =>
+      range(number).map((index) => (
+        <div key={index} className="gridLine" id={`id${index}`} />
+      ));
 
     return (
       <div ref={ref} id="game">
         <div id="board">
-          {[...Array(3).keys()].map((index) => RenderRow(index * 3))}
-          <div className="gridLine" id="id1"></div>
-          <div className="gridLine" id="id2"></div>
-          <div className="gridLine" id="id3"></div>
-          <div className="gridLine" id="id4"></div>
+          {range(3).map((index) => RenderRow(index * 3))}
+          {RenderGridLines(4)}
           <div id="winningline" style={props.lineStyle} />
         </div>
       </div>
