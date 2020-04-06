@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { debounce } from "lodash";
 import Header from "./Header";
 import Board from "./Board";
 import GameOver from "./Gameover";
+import { debounce } from "lodash";
+import { getBestMove } from "../helpers/bestmove";
+import { getWinningSquares, lineStyle, canComputerWin } from "../helpers/winner";
 import "../styles/index.css";
-import {
-  getWinningSquares,
-  lineStyle,
-  canComputerWin,
-} from "../helpers/winner";
-import getBestMove from "../helpers/switcher";
 
 const Game: React.FC = () => {
-  const [squares, setSquares] = useState<Squares>(Array(9).fill(null));
+  const [squares, setSquares] = useState<Square[]>(Array(9).fill(null));
   const [playerTurn, setPlayerTurn] = useState(true);
   const [winner, setWinner] = useState(false);
   const [boardSize, setBoardSize] = useState([0, 0]);
@@ -44,14 +40,11 @@ const Game: React.FC = () => {
       }, 500);
     }
   }, [squares, playerTurn]);
+
   const clickOnSquare = (i: number) => {
     const squaresCopy = [...squares];
 
-    if (
-      getWinningSquares(squaresCopy) ||
-      squaresCopy[i] ||
-      playerTurn === false
-    ) {
+    if (getWinningSquares(squares) || squares[i] || playerTurn === false) {
       return;
     }
     squaresCopy[i] = "X";
@@ -63,6 +56,7 @@ const Game: React.FC = () => {
     setSquares(squaresCopy);
     setPlayerTurn(false);
   };
+
   return (
     <div className="container" style={{ height: innerHeight }}>
       <Header />

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/fontello/css/fontello.css";
-interface Props {
+
+interface GameOverProps {
   winner: boolean;
   resetGame: () => void;
 }
-const GameOver: React.FC<Props> = ({ winner, resetGame }) => {
+
+const GameOver: React.FC<GameOverProps> = ({ winner, resetGame }) => {
   const [shouldRender, setRender] = useState(winner);
   const [style, setStyle] = useState<{}>({ opacity: "0" });
 
@@ -16,11 +18,13 @@ const GameOver: React.FC<Props> = ({ winner, resetGame }) => {
       setStyle({ animation: "1s ease both fadeout" });
     }
   }, [winner]);
+
   const onAnimationEnd = () => {
     if (!winner) {
       setRender(false);
     }
   };
+
   return !shouldRender ? null : (
     <div id="gameOver" onAnimationEnd={onAnimationEnd} style={style}>
       <p id="gameOverText">

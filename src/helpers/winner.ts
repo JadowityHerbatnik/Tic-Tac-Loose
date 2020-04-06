@@ -10,7 +10,7 @@ function getLines() {
     [2, 4, 6],
   ];
 }
-export function getWinningSquares(squares: Squares) {
+export function getWinningSquares(squares: Square[]) {
   const lines = getLines();
   for (let i = 0, len = lines.length; i < len; i++) {
     const [a, b, c] = lines[i];
@@ -19,7 +19,7 @@ export function getWinningSquares(squares: Squares) {
     }
   }
 }
-export function canComputerWin(squares: Squares) {
+export function canComputerWin(squares: Square[]) {
   const lines = getLines();
   for (let i = 0, len = lines.length; i < len; i++) {
     const [a, b, c] = lines[i];
@@ -30,10 +30,12 @@ export function canComputerWin(squares: Squares) {
   return false;
 }
 
-export function lineStyle(squares: Squares) {
+export function lineStyle(squares: Square[]) {
   let winnerSquares = getWinningSquares(squares);
-  if (winnerSquares) {
-    const lineStyle: lineStyle = {};
+  let lineStyle: lineStyle = {};
+  if (!winnerSquares) {
+    return undefined;
+  } else {
     const start = winnerSquares[0];
     const end = winnerSquares[1];
     const thickness = "4%";

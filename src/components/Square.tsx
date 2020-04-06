@@ -1,17 +1,15 @@
 import React from "react";
 import { X_tic, O_tic } from "./Svg";
 
-interface Square {
-  value: "X" | "O" | null;
+interface SquareProps {
+  value: Square;
   squareSize: number;
   arialabel: string;
   xSize: number;
   circleSize: number;
-  clickOnSquare: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  clickOnSquare: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
-export const Square = (props: Square) => {
+export const Square = (props: SquareProps) => {
   const active = props.value;
   return (
     <button

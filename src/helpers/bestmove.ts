@@ -1,6 +1,6 @@
 import Minimax from "tic-tac-toe-minimax";
 
-function getBestMove(squares: (string | null)[]) {
+export function getBestMove(squares: Square[]) {
   const { ComputerMove } = Minimax;
 
   const symbols = {
@@ -13,4 +13,3 @@ function getBestMove(squares: (string | null)[]) {
   });
   return ComputerMove(board, symbols, difficulty);
 }
-export default getBestMove;
