@@ -30,9 +30,9 @@ export function canComputerWin(squares: Square[]) {
   return false;
 }
 
-export function lineStyle(squares: Square[]) {
+export function winLineStyle(squares: Square[]) {
   let winnerSquares = getWinningSquares(squares);
-  let lineStyle: lineStyle = {};
+  let lineStyle: Partial<lineStyle> = {};
   if (!winnerSquares) {
     return undefined;
   } else {

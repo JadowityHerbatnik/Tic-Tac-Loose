@@ -4,7 +4,7 @@ import { Square } from "./Square";
 interface BoardProps {
   squares: Square[];
   clickOnSquare: (i: number) => void;
-  lineStyle: lineStyle | undefined;
+  winningLine: Partial<lineStyle> | undefined;
   boardSize: number[];
 }
 const Board = forwardRef((props: BoardProps, ref: React.Ref<HTMLDivElement>) => {
