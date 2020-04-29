@@ -4,7 +4,7 @@ import Board from "./Board";
 import GameOver from "./Gameover";
 import { debounce } from "lodash";
 import { getBestMove } from "../helpers/bestmove";
-import { getWinningSquares, lineStyle, canComputerWin } from "../helpers/winner";
+import { getWinningSquares, winLineStyle, canComputerWin } from "../helpers/winner";
 import "../styles/index.css";
 
 const Game: React.FC = () => {
@@ -64,7 +64,7 @@ const Game: React.FC = () => {
         ref={boardRef}
         squares={squares}
         clickOnSquare={(i) => clickOnSquare(i)}
-        lineStyle={lineStyle(squares)}
+        winningLine={winLineStyle(squares)}
         boardSize={boardSize}
       />
       <GameOver

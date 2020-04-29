@@ -45,7 +45,7 @@ const Board = forwardRef((props: BoardProps, ref: React.Ref<HTMLDivElement>) => 
       <div id="board">
         {[...Array(3).keys()].map((index) => RenderRow(index * 3))}
         {RenderGridLines(4)}
-        <div id="winningline" style={props.lineStyle} />
+        <div id="winningline" style={props.winningLine} />
       </div>
     </div>
   );
